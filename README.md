@@ -19,11 +19,11 @@ We are always open for your contributions to our open-source projects.
 
 ## Versioning
 
-All **Blue Muffin** will be maintained under the Semantic Versioning guidelines as much as possible. Releases will be numbered with the following format:
+All **Blue Muffin** projects will be maintained under the Semantic Versioning guidelines as much as possible. Releases will be numbered with the following format:
 
 `<major>.<minor>.<patch>`
 
-For more information on SemVer, please visit http://semver.org.
+More information on [SemVer](http://semver.org).
 
 * Any release may update the design, look-and-feel or functionality
 * We will never release a `patch` version update that breaks compatibility
@@ -31,7 +31,7 @@ For more information on SemVer, please visit http://semver.org.
 * Bug fixes will be addressed as `patch` releases unless they include compatibility breaks then they will be `minor` releases
 
 ## Copyright and License
-Every part of the project is licensed under MIT License just as the whole Ionic platform - see [this project's license file](https://github.com/mullinsmikey/wset/blob/master/LICENSE.md) for details.
+Every part of the project is licensed under MIT License just as the whole Ionic platform - see [this project's license file](./LICENSE) for details.
 
 ## Questions and Contact Us
 If you do need to reach out to us, here's how to do it:
