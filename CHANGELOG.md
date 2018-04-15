@@ -3,7 +3,16 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## [0.0.8]()  - 2018-04-11
+## [1.0.0](./releases/tag/1.0.0)  - 2018-04-15
+
+Release to build Google Play APK
+
+### Changed
+* Product version
+
+---
+
+## [0.0.8](./releases/tag/0.0.8)  - 2018-04-11
 
 ### Added
 * Lots of useful tips
