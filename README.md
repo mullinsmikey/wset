@@ -2,6 +2,8 @@
 
 Kids' watch setup app. Use this instead of sending SMS to your GPS watch manually.
 
+[![Build Status](https://travis-ci.org/mullinsmikey/wset.svg?branch=master)]
+
 ## Documentation
 
 There will be no documentation for Android apps. Any tips & help will be provided inside the running application.

@@ -2,7 +2,7 @@ sudo: false
 
 language: node_js
 node_js:
-  - "5.1"
+  - "9.10"
 
 addons:
   apt:
@@ -15,6 +15,9 @@ addons:
     - lib32z1
 env:
   CXX=g++-4.8
+
+before_install:
+  dpkg --compare-versions `npm -v` ge 5.8 || npm i -g npm@^5.8
 
 install:
   - npm install -g gulp bower cordova ionic
@@ -32,6 +35,3 @@ before_script:
   - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter extra-google-m2repository
   - export ANDROID_HOME=$PWD/android-sdk-linux
   - export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/23.0.2
-
-script:
-  - cordova prepare
