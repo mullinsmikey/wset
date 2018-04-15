@@ -1,4 +1,4 @@
-# Contributing to Font Awesome Pro
+# Contributing to Blue Muffin projects
 
 Looking to contribute something to WSet? **Here's how you can help**
 
