@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start><button ion-button (click)="dismiss()">Закрыть</button></ion-buttons>
+    <ion-title>Справка</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item text-wrap>
+    <p [innerHTML]="helpText"></p>
+  </ion-item>
+</ion-content>

@@ -1,0 +1,8 @@
+{
+  "name": "wset",
+  "app_id": "a9c97bf8",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

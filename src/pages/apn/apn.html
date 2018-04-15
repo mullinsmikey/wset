@@ -1,0 +1,129 @@
+<ion-header>
+  <ion-navbar no-border-bottom><ion-title>APN и сервер</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openHelp()"><ion-icon name="help-circle"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="apnserv">
+      <ion-segment-button value="apnauto">Авто</ion-segment-button>
+      <ion-segment-button value="apnman">Ручная</ion-segment-button>
+      <ion-segment-button value="server">Сервер</ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div [ngSwitch]="apnserv">
+    <ion-list *ngSwitchCase="'apnauto'">
+      <ion-item-group>
+        <ion-item-divider color="light">МТС</ion-item-divider>
+        <ion-item (click)="sendMts1();">
+          <h2>Универсальный</h2>
+          <h3>Любые тарифы и устройства</h3>
+          <ion-icon name="send" item-end></ion-icon>
+        </ion-item>
+        <ion-item-divider color="light">Мегафон</ion-item-divider>
+        <ion-item (click)="sendMgf1();">
+          <h2>Вариант 1</h2>
+          <h3>gdata</h3>
+          <ion-icon name="send" item-end></ion-icon>
+        </ion-item>
+        <ion-item (click)="sendMgf2();">
+          <h2>Вариант 2</h2>
+          <h3>&nbsp;</h3>
+          <ion-icon name="send" item-end></ion-icon>
+        </ion-item>
+        <ion-item (click)="sendMgf3();">
+          <h2>Вариант 3</h2>
+          <h3>Тарифы "Лайт" и для GPS-трекеров</h3>
+          <ion-icon name="send" item-end></ion-icon>
+        </ion-item>
+        <ion-item-divider color="light">Билайн</ion-item-divider>
+        <ion-item (click)="sendBln1();">
+          <h2>Вариант 1</h2>
+          <h3>Разговорные тарифы</h3>
+          <ion-icon name="send" item-end></ion-icon>
+        </ion-item>
+        <ion-item (click)="sendBln2();">
+          <h2>Вариант 2</h2>
+          <h3>Тарифы для USB-модемов</h3>
+          <ion-icon name="send" item-end></ion-icon>
+        </ion-item>
+        <ion-item-divider color="light">Теле2</ion-item-divider>
+        <ion-item (click)="sendTel1();">
+          <h2>Универсальный</h2>
+          <h3>Любые тарифы и устройства</h3>
+          <ion-icon name="send" item-end></ion-icon>
+        </ion-item>
+      </ion-item-group>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'apnman'">
+      <ion-item-group>
+        <ion-item>
+          <ion-label floating>Адрес APN</ion-label>
+          <ion-input [(ngModel)]="apnMAddr" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Логин</ion-label>
+          <ion-input [(ngModel)]="apnMLogin" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Пароль</ion-label>
+          <ion-input [(ngModel)]="apnMPass" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <button ion-button full icon-right (click)="sendMan();">Применить<ion-icon name="send"></ion-icon></button>
+        </ion-item>
+      </ion-item-group>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'server'">
+      <ion-item-group>
+        <ion-item-divider color="light">SeTracker</ion-item-divider>
+        <ion-item (click)="sendSeEu();">
+          <h2>SeTracker</h2>
+          <h3>Европа и Африка</h3>
+          <ion-icon name="send" item-end></ion-icon>
+        </ion-item>
+        <ion-item (click)="sendSeAs();">
+          <h2>SeTracker</h2>
+          <h3>Азия и Океания</h3>
+          <ion-icon name="send" item-end></ion-icon>
+        </ion-item>
+        <ion-item (click)="sendSeNa();">
+          <h2>SeTracker</h2>
+          <h3>Северная Америка</h3>
+          <ion-icon name="send" item-end></ion-icon>
+        </ion-item>
+        <ion-item (click)="sendSeSa();">
+          <h2>SeTracker</h2>
+          <h3>Южная Америка</h3>
+          <ion-icon name="send" item-end></ion-icon>
+        </ion-item>
+        <ion-item (click)="sendSeHk();">
+          <h2>SeTracker</h2>
+          <h3>Гонконг</h3>
+          <ion-icon name="send" item-end></ion-icon>
+        </ion-item>
+        <ion-item-divider color="light">Прочие</ion-item-divider>
+        <ion-item (click)="sendMaya();">
+          <h2>Маяк</h2>
+          <h3>&nbsp;</h3>
+          <ion-icon name="send" item-end></ion-icon>
+        </ion-item>
+        <ion-item (click)="sendAsgr();">
+          <h2>Asgard</h2>
+          <h3>&nbsp;</h3>
+          <ion-icon name="send" item-end></ion-icon>
+        </ion-item>
+        <ion-item (click)="sendLgtr();">
+          <h2>LiveGPStracks</h2>
+          <h3>&nbsp;</h3>
+          <ion-icon name="send" item-end></ion-icon>
+        </ion-item>
+      </ion-item-group>
+    </ion-list>
+  </div>
+</ion-content>

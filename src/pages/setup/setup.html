@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar><ion-title>Настройка SIM номеров</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openHelp()"><ion-icon name="help-circle"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>Номер тестовой SIM-карты</ion-list-header>
+    <ion-item>
+      <ion-label floating>Тестовая SIM</ion-label>
+      <ion-input [(ngModel)]="simTest" type="tel"></ion-input>
+    </ion-item>
+    <ion-list-header>Номер клиентской SIM-карты</ion-list-header>
+    <ion-item>
+      <ion-label floating>Клиентская SIM</ion-label>
+      <ion-input [(ngModel)]="simClient" type="tel"></ion-input>
+    </ion-item>
+    <ion-list-header>SIM-карта для использования</ion-list-header>
+    <ion-item>
+      <ion-label>Тестовая</ion-label>
+      <ion-toggle [(ngModel)]="useTest"></ion-toggle>
+    </ion-item>
+    <ion-list-header>Пароль для часов</ion-list-header>
+    <ion-item>
+      <ion-label>Стандартный</ion-label>
+      <ion-toggle [(ngModel)]="useStdPw"></ion-toggle>
+    </ion-item>
+  </ion-list>
+</ion-content>

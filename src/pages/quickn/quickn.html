@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar><ion-title>Быстрые номера</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openHelp()"><ion-icon name="help-circle"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Кнопка 1</ion-label>
+      <ion-input [(ngModel)]="quickn1" type="tel"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button ion-button full icon-right (click)="setQuickn1();">Установить кнопку 1<ion-icon name="send"></ion-icon></button>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Кнопка 2</ion-label>
+      <ion-input [(ngModel)]="quickn2" type="tel"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button ion-button full icon-right (click)="setQuickn2();">Установить кнопку 2<ion-icon name="send"></ion-icon></button>
+    </ion-item>
+  </ion-list>
+</ion-content>

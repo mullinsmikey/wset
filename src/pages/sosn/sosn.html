@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar><ion-title>SOS-номера</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openHelp()"><ion-icon name="help-circle"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>SOS 1</ion-label>
+      <ion-input [(ngModel)]="sosn1" type="tel"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button ion-button full icon-right (click)="setSosn1();">Установить SOS 1<ion-icon name="send"></ion-icon></button>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>SOS 2</ion-label>
+      <ion-input [(ngModel)]="sosn2" type="tel"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button ion-button full icon-right (click)="setSosn2();">Установить SOS 2<ion-icon name="send"></ion-icon></button>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>SOS 3</ion-label>
+      <ion-input [(ngModel)]="sosn3" type="tel"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button ion-button full icon-right (click)="setSosn3();">Установить SOS 3<ion-icon name="send"></ion-icon></button>
+    </ion-item>
+  </ion-list>
+</ion-content>

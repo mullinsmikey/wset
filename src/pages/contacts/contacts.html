@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar><ion-title>Запись контактов</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openHelp()"><ion-icon name="help-circle"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Имя 1</ion-label>
+      <ion-input [(ngModel)]="cName1" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Номер 1</ion-label>
+      <ion-input [(ngModel)]="cTel1" type="tel"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Имя 2</ion-label>
+      <ion-input [(ngModel)]="cName2" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Номер 2</ion-label>
+      <ion-input [(ngModel)]="cTel2" type="tel"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Имя 3</ion-label>
+      <ion-input [(ngModel)]="cName3" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Номер 3</ion-label>
+      <ion-input [(ngModel)]="cTel3" type="tel"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Имя 4</ion-label>
+      <ion-input [(ngModel)]="cName4" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Номер 4</ion-label>
+      <ion-input [(ngModel)]="cTel4" type="tel"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Имя 5</ion-label>
+      <ion-input [(ngModel)]="cName5" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Номер 5</ion-label>
+      <ion-input [(ngModel)]="cTel5" type="tel"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button ion-button full icon-right (click)="setCon1();">Отправить контакты<ion-icon name="send"></ion-icon></button>
+    </ion-item>
+  </ion-list>
+</ion-content>

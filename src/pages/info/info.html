@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar><ion-title>О приложении</ion-title></ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="./assets/imgs/blue_muffin.png">
+      </ion-thumbnail>
+      <p>Приложение разработано</p>
+      <h2>Blue Muffin</h2>
+      <button ion-button clear item-end (click)="openWeb('http://muffin.blue')">Сайт</button>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="./assets/imgs/sj_logo.png">
+      </ion-thumbnail>
+      <p>По заказу</p>
+      <h2>SJmarket</h2>
+      <button ion-button clear item-end (click)="openWeb('https://sjmarket.ru')">Сайт</button>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>Отдельная благодарность</ion-list-header>
+    <ion-item text-wrap>Выражаем благодарность пользователям форума 4PDA за публикацию команд, что и послужило идеей для создания приложения<br><b>Dimka_Piter</b><br><b>bildin</b></ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>Информация</ion-list-header>
+    <ion-item>
+      <ion-label item-left>Версия</ion-label>
+      <ion-label item-right text-right>0.0.8</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label item-left>Framework</ion-label>
+      <ion-label item-right text-right>3.9.2</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label item-left>CLib</ion-label>
+      <ion-label item-right text-right>7.1.0</ion-label>
+    </ion-item>
+    <ion-item>
+      <h2>Сообщить об ошибке</h2>
+      <h2>Предложить идею</h2>
+      <button ion-button clear item-end (click)="openWeb('mailto:hi@muffin.blue')">Написать</button>
+    </ion-item>
+  </ion-list>
+</ion-content>

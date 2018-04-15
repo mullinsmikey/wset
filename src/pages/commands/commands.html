@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar><ion-title>Основные запросы</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openHelp()"><ion-icon name="help-circle"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <ion-card class="card-button" (click)="sendTs()">
+          <ion-icon name="help-circle" class="icon-col-green"></ion-icon>
+          <ion-card-content><p>Текущие настройки</p></ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card class="card-button" (click)="sendTt()">
+          <ion-icon name="barcode" class="icon-col-green"></ion-icon>
+          <ion-card-content><p>Reg Code часов (ZCM)</p></ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card class="card-button" (click)="sendLo()">
+          <ion-icon name="locate" class="icon-col-blue"></ion-icon>
+          <ion-card-content><p>Геопозиция</p></ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card class="card-button" (click)="sendFi()">
+          <ion-icon name="volume-down" class="icon-col-blue"></ion-icon>
+          <ion-card-content><p>Подать звук</p></ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card class="card-button" (click)="sendPo()">
+          <ion-icon name="power" class="icon-col-blue"></ion-icon>
+          <ion-card-content><p>Выключение</p></ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card class="card-button" (click)="sendRe()">
+          <ion-icon name="refresh" class="icon-col-blue"></ion-icon>
+          <ion-card-content><p>Перезапуск</p></ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

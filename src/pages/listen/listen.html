@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar><ion-title>Прослушка</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openHelp()"><ion-icon name="help-circle"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label floating>Номер для прослушки</ion-label>
+    <ion-input [(ngModel)]="moniTo" type="tel"></ion-input>
+  </ion-item>
+  <ion-item>
+    <button ion-button full (click)="moniMake()">Прослушать</button>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Номер для звонка</ion-label>
+    <ion-input [(ngModel)]="callTo" type="tel"></ion-input>
+  </ion-item>
+  <ion-item>
+    <button ion-button full (click)="callMake()">Позвонить</button>
+  </ion-item>
+</ion-content>

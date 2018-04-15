@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar><ion-title>Язык, дата и время</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openHelp()"><ion-icon name="help-circle"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label>Язык</ion-label>
+      <ion-select [(ngModel)]="setLang">
+        <ion-option value="9">Русский</ion-option>
+        <ion-option value="3">English</ion-option>
+        <ion-option value="1">中文简体</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Часовой пояс</ion-label>
+      <ion-select [(ngModel)]="setZone">
+        <ion-option value="3">GMT+3 (Москва)</ion-option>
+        <ion-option value="4">GMT+4 (Самара)</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <button ion-button full icon-right (click)="setLz();">Применить<ion-icon name="send"></ion-icon></button>
+    </ion-item>
+    <ion-item>
+      <button ion-button full (click)="setCali();">Калибровка времени</button>
+    </ion-item>
+  </ion-list>
+</ion-content>
