@@ -1,6 +1,7 @@
 <h1>WSet</h1>
 
 Kids' watch setup app. Use this instead of sending SMS to your GPS watch manually.
+
 ![version](https://img.shields.io/badge/dynamic/json.svg?label=version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fmullinsmikey%2Fwset%2Fmaster%2Fpackage.json&query=%24.version) ![Build Status](https://travis-ci.org/mullinsmikey/wset.svg?branch=master)
 
 ## Documentation
@@ -15,7 +16,9 @@ Looking for older versions of WSet? Check the [releases](https://github.com/mull
 
 ## Contributing
 
-We are always open for your contributions to our open-source projects.
+We are always open for your contributions to our open source projects.
+
+Need to report an issue? [Start here](./.github/CONTRIBUTING.md).
 
 ## Versioning
 
