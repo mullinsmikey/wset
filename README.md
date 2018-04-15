@@ -1,14 +1,13 @@
 <h1>WSet</h1>
 
 Kids' watch setup app. Use this instead of sending SMS to your GPS watch manually.
-
-[![Build Status](https://travis-ci.org/mullinsmikey/wset.svg?branch=master)]
+![version](https://img.shields.io/badge/dynamic/json.svg?label=version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fmullinsmikey%2Fwset%2Fmaster%2Fpackage.json&query=%24.version) ![Build Status](https://travis-ci.org/mullinsmikey/wset.svg?branch=master)
 
 ## Documentation
 
 There will be no documentation for Android apps. Any tips & help will be provided inside the running application.
 
-## Change log
+## Changelog
 
 We'll keep track of each release in the [CHANGELOG.md](./CHANGELOG.md)
 
