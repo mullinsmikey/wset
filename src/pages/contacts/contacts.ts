@@ -10,10 +10,15 @@ import { SMS } from '@ionic-native/sms';
   providers: [ ToastController, ModalController, SMS ]
 })
 export class ContactsPage {
+  // VARIABLES
+  // settings
   usePw: string;
   simSend: string;
+  spStatus: boolean;
+  // commands
   cName1: string; cName2: string; cName3: string; cName4: string; cName5: string;
   cTel1: string; cTel2: string; cTel3: string; cTel4: string; cTel5: string;
+  // encoding dictionary
   uniLL = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
   uniLU = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
   uniCL = ['а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я'];
@@ -44,10 +49,16 @@ export class ContactsPage {
     toast.present();
   }
   sendSms(cmd: string, toast: string) {
-    let sendTo = this.simSend;
-    let cmdStr = 'pw,' + this.usePw + ',' + cmd + '#';
-    this.sms.send(sendTo, cmdStr).catch(err => console.log(err));
-    this.presentToast(toast);
+    if ((this.spStatus) && (this.simSend != null) && (this.simSend != '')) {
+      let sendTo = this.simSend;
+      let cmdStr = 'pw,' + this.usePw + ',' + cmd + '#';
+      this.sms.send(sendTo, cmdStr).catch(err => console.log(err));
+      this.presentToast(toast);
+    } else if (!this.spStatus) {
+      this.presentToast('Нет доступа к отправке SMS\nРазрешите на вкладке Настройки');
+    } else {
+      this.presentToast('Неверно указан номер SIM\nИзмените на вкладке Настройки');
+    }
   }
 
   utf16Enc(toEnc: string) {
@@ -80,6 +91,7 @@ export class ContactsPage {
     this.sendSms('phb,' + conts, 'Номера отправлены\nОжидайте записи');
   }
 
+  // LOAD-RELOAD SETTINGS WHEN OPENING PAGE
   ionViewDidEnter() {
     this.storage.get('useTest').then((val) => {
       let useTest = val;
@@ -96,6 +108,9 @@ export class ContactsPage {
       } else {
         this.usePw = '523681';
       }
+    }).catch(err => console.log(err));
+    this.storage.get('spStatus').then((val) => {
+      if (val == null) { this.spStatus = false; } else { this.spStatus = val; }
     }).catch(err => console.log(err));
   }
 

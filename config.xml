@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="blue.muffin.wset" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>WSet</name>
+<widget id="blue.muffin.wset" version="1.1.2" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Watch Set</name>
     <description>Kids' watch setup app</description>
     <author email="hi@muffin.blue" href="http://muffin.blue/">Blue Muffin</author>
     <content src="index.html" />
@@ -84,5 +84,8 @@
     <plugin name="cordova-sms-plugin" spec="^0.1.11" />
     <plugin name="cordova-sqlite-storage" spec="^2.3.0" />
     <plugin name="cordova-plugin-inappbrowser" spec="^2.0.2" />
+    <plugin name="cordova.plugins.diagnostic" spec="^4.0.8" />
+    <plugin name="cordova-open-native-settings" spec="^1.5.1" />
     <engine name="android" spec="7.1.0" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
 </widget>

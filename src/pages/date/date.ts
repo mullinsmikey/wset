@@ -10,8 +10,12 @@ import { SMS } from '@ionic-native/sms';
   providers: [ ToastController, ModalController, SMS ]
 })
 export class DatePage {
+  // VARIABLES
+  // settings
   usePw: string;
   simSend: string;
+  spStatus: boolean;
+  // commands
   setLang: string = "9";
   setZone: string = "4";
 
@@ -36,15 +40,22 @@ export class DatePage {
     toast.present();
   }
   sendSms(cmd: string, toast: string) {
-    let sendTo = this.simSend;
-    let cmdStr = 'pw,' + this.usePw + ',' + cmd + '#';
-    this.sms.send(sendTo, cmdStr).catch(err => console.log(err));
-    this.presentToast(toast);
+    if ((this.spStatus) && (this.simSend != null) && (this.simSend != '')) {
+      let sendTo = this.simSend;
+      let cmdStr = 'pw,' + this.usePw + ',' + cmd + '#';
+      this.sms.send(sendTo, cmdStr).catch(err => console.log(err));
+      this.presentToast(toast);
+    } else if (!this.spStatus) {
+      this.presentToast('Нет доступа к отправке SMS\nРазрешите на вкладке Настройки');
+    } else {
+      this.presentToast('Неверно указан номер SIM\nИзмените на вкладке Настройки');
+    }
   }
 
   setLz() { this.sendSms('lz,' + this.setLang + ',' + this.setZone, 'Настройки отправлены\nОжидайте ответа'); }
   setCali() { this.sendSms('timecali', 'Команда отправлена\nОжидайте калибровки'); }
 
+  // LOAD-RELOAD SETTINGS WHEN OPENING PAGE
   ionViewDidEnter() {
     this.storage.get('useTest').then((val) => {
       let useTest = val;
@@ -61,6 +72,9 @@ export class DatePage {
       } else {
         this.usePw = '523681';
       }
+    }).catch(err => console.log(err));
+    this.storage.get('spStatus').then((val) => {
+      if (val == null) { this.spStatus = false; } else { this.spStatus = val; }
     }).catch(err => console.log(err));
   }
 

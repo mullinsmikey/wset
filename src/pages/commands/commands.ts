@@ -10,8 +10,16 @@ import { SMS } from '@ionic-native/sms';
   providers: [ ToastController, ModalController, SMS ]
 })
 export class CommandsPage {
+  // VARIABLES
+  // settings
   usePw: string;
   simSend: string;
+  exMode: boolean;
+  spStatus: boolean;
+  // commands
+  uploadSec: string;
+  moniTo: string;
+  callTo: string;
 
   constructor(public navCtrl: NavController,
     private toastCtrl: ToastController, public modalCtrl: ModalController,
@@ -34,10 +42,16 @@ export class CommandsPage {
     toast.present();
   }
   sendSms(cmd: string, toast: string) {
-    let sendTo = this.simSend;
-    let cmdStr = 'pw,' + this.usePw + ',' + cmd + '#';
-    this.sms.send(sendTo, cmdStr).catch(err => console.log(err));
-    this.presentToast(toast);
+    if ((this.spStatus) && (this.simSend != null) && (this.simSend != '')) {
+      let sendTo = this.simSend;
+      let cmdStr = 'pw,' + this.usePw + ',' + cmd + '#';
+      this.sms.send(sendTo, cmdStr).catch(err => console.log(err));
+      this.presentToast(toast);
+    } else if (!this.spStatus) {
+      this.presentToast('Нет доступа к отправке SMS\nРазрешите на вкладке Настройки');
+    } else {
+      this.presentToast('Неверно указан номер SIM\nИзмените на вкладке Настройки');
+    }
   }
 
   // PROCESSING BUTTONS (COMMANDS)
@@ -47,6 +61,10 @@ export class CommandsPage {
   sendFi() { this.sendSms('find', 'Запрос отправлен\nОжидайте звука'); }
   sendPo() { this.sendSms('poweroff', 'Выключение\nОжидайте'); }
   sendRe() { this.sendSms('reset', 'Перезапуск\nОжидайте'); }
+  sendSeEu() { this.sendSms('ip,52.28.132.157,8001', 'Сервер установлен (Se Европа)\nОжидайте "ip ok"'); }
+  moniMake() { this.sendSms('monitor,' + this.moniTo, 'Запрос отправлен\nОжидайте звонка'); }
+  callMake() { this.sendSms('monitor,' + this.callTo, 'Запрос отправлен\nОжидайте звонка'); }
+  setUpload() { this.sendSms('upload,' + this.uploadSec, 'Интервал установлен\nОжидайте ответа'); }
 
   // LOAD-RELOAD SETTINGS WHEN OPENING PAGE
   ionViewDidEnter() {
@@ -65,6 +83,12 @@ export class CommandsPage {
       } else {
         this.usePw = '523681';
       }
+    }).catch(err => console.log(err));
+    this.storage.get('exMode').then((val) => {
+      if (val == null) { this.exMode = false; } else { this.exMode = val; }
+    }).catch(err => console.log(err));
+    this.storage.get('spStatus').then((val) => {
+      if (val == null) { this.spStatus = false; } else { this.spStatus = val; }
     }).catch(err => console.log(err));
   }
 

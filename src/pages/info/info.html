@@ -20,29 +20,37 @@
       <h2>SJmarket</h2>
       <button ion-button clear item-end (click)="openWeb('https://sjmarket.ru')">Сайт</button>
     </ion-item>
-  </ion-list>
-  <ion-list>
-    <ion-list-header>Отдельная благодарность</ion-list-header>
-    <ion-item text-wrap>Выражаем благодарность пользователям форума 4PDA за публикацию команд, что и послужило идеей для создания приложения<br><b>Dimka_Piter</b><br><b>bildin</b></ion-item>
-  </ion-list>
-  <ion-list>
-    <ion-list-header>Информация</ion-list-header>
-    <ion-item>
-      <ion-label item-left>Версия</ion-label>
-      <ion-label item-right text-right>1.0.0</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label item-left>Framework</ion-label>
-      <ion-label item-right text-right>3.9.2</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label item-left>CLib</ion-label>
-      <ion-label item-right text-right>7.1.0</ion-label>
-    </ion-item>
     <ion-item>
       <h2>Сообщить об ошибке</h2>
       <h2>Предложить идею</h2>
       <button ion-button clear item-end (click)="openWeb('mailto:hi@muffin.blue')">Написать</button>
+    </ion-item>
+    <ion-list-header no-lines>Отдельная благодарность</ion-list-header>
+    <ion-item text-wrap>Выражаем благодарность пользователям форума 4PDA за публикацию команд, что и послужило идеей для создания приложения: <b>Dimka_Piter</b>, <b>bildin</b></ion-item>
+    <ion-item>
+      <ion-label>Расширенный режим</ion-label>
+      <ion-toggle [(ngModel)]="exMode" (ionChange)="changeMode()"></ion-toggle>
+    </ion-item>
+    <ion-list-header no-lines (click)="showInf()">Информация {{ info == true ? '(закрыть)' : '(открыть)' }}</ion-list-header>
+    <ion-item *ngIf="info">
+      <ion-label item-left>Версия</ion-label>
+      <ion-label item-right text-right>1.1.2</ion-label>
+    </ion-item>
+    <ion-item *ngIf="info">
+      <ion-label item-left>Framework</ion-label>
+      <ion-label item-right text-right>3.9.2</ion-label>
+    </ion-item>
+    <ion-item *ngIf="info">
+      <ion-label item-left>CLib</ion-label>
+      <ion-label item-right text-right>7.1.0</ion-label>
+    </ion-item>
+    <ion-item *ngIf="info">
+      <ion-label item-left color="softgray">sp Status</ion-label>
+      <ion-label item-right text-right color="softgray">{{ spStatus == true ? 'OK' : 'no' }}</ion-label>
+    </ion-item>
+    <ion-item *ngIf="info">
+      <ion-label item-left color="softgray">sp Postpone</ion-label>
+      <ion-label item-right text-right color="softgray">{{ spPone == true ? 'yes' : 'no' }}</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>

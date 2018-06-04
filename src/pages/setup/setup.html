@@ -1,32 +1,64 @@
 <ion-header>
-  <ion-navbar><ion-title>Настройка SIM номеров</ion-title>
+  <ion-navbar><ion-title>Настройка приложения</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="openHelp()"><ion-icon name="help-circle"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-list>
-    <ion-list-header>Номер тестовой SIM-карты</ion-list-header>
-    <ion-item>
-      <ion-label floating>Тестовая SIM</ion-label>
-      <ion-input [(ngModel)]="simTest" type="tel"></ion-input>
-    </ion-item>
-    <ion-list-header>Номер клиентской SIM-карты</ion-list-header>
-    <ion-item>
-      <ion-label floating>Клиентская SIM</ion-label>
-      <ion-input [(ngModel)]="simClient" type="tel"></ion-input>
-    </ion-item>
-    <ion-list-header>SIM-карта для использования</ion-list-header>
-    <ion-item>
-      <ion-label>Тестовая</ion-label>
-      <ion-toggle [(ngModel)]="useTest"></ion-toggle>
-    </ion-item>
-    <ion-list-header>Пароль для часов</ion-list-header>
-    <ion-item>
-      <ion-label>Стандартный</ion-label>
-      <ion-toggle [(ngModel)]="useStdPw"></ion-toggle>
-    </ion-item>
-  </ion-list>
+<ion-content>
+  <ion-grid>
+    <ion-row *ngIf="spPone">
+      <ion-col col-12 padding>
+        <ion-label>Доступ к отправке SMS</ion-label>
+      </ion-col>
+      <ion-col col-12>
+        <button ion-button full color="danger" (click)="checkSms()">Разрешить</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 padding>
+        <ion-label>{{tSimHead}}</ion-label>
+      </ion-col>
+      <ion-col col-12>
+        <ion-item>
+          <ion-label floating>{{tSimField}}</ion-label>
+          <ion-input [(ngModel)]="simTest" type="tel"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="exMode">
+      <ion-col col-12 padding>
+        <ion-label>Номер клиентской SIM-карты</ion-label>
+      </ion-col>
+      <ion-col col-12>
+        <ion-item>
+          <ion-label floating>Клиентская SIM</ion-label>
+          <ion-input [(ngModel)]="simClient" type="tel"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="exMode">
+      <ion-col col-12 padding>
+        <ion-label>SIM-карта для использования</ion-label>
+      </ion-col>
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>Тестовая</ion-label>
+          <ion-toggle [(ngModel)]="useTest"></ion-toggle>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 padding>
+        <ion-label>Пароль для часов</ion-label>
+      </ion-col>
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>Стандартный</ion-label>
+          <ion-toggle [(ngModel)]="useStdPw"></ion-toggle>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

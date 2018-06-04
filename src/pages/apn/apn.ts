@@ -10,8 +10,12 @@ import { SMS } from '@ionic-native/sms';
   providers: [ ToastController, ModalController, SMS ]
 })
 export class ApnPage {
+  // VARIABLES
+  // settings
   usePw: string;
   simSend: string;
+  spStatus: boolean;
+  // commands
   apnserv: string;
   apnMAddr: string;
   apnMLogin: string;
@@ -40,10 +44,16 @@ export class ApnPage {
     toast.present();
   }
   sendSms(cmd: string, toast: string) {
-    let sendTo = this.simSend;
-    let cmdStr = 'pw,' + this.usePw + ',' + cmd + '#';
-    this.sms.send(sendTo, cmdStr).catch(err => console.log(err));
-    this.presentToast(toast);
+    if ((this.spStatus) && (this.simSend != null) && (this.simSend != '')) {
+      let sendTo = this.simSend;
+      let cmdStr = 'pw,' + this.usePw + ',' + cmd + '#';
+      this.sms.send(sendTo, cmdStr).catch(err => console.log(err));
+      this.presentToast(toast);
+    } else if (!this.spStatus) {
+      this.presentToast('Нет доступа к отправке SMS\nРазрешите на вкладке Настройки');
+    } else {
+      this.presentToast('Неверно указан номер SIM\nИзмените на вкладке Настройки');
+    }
   }
 
   sendMts1() { this.sendSms('apn,internet.mts.ru,mts,mts', 'APN отправлен (МТС)\nОжидайте ответа'); }
@@ -66,6 +76,7 @@ export class ApnPage {
   sendAsgr() { this.sendSms('ip,87.118.101.202,5565', 'Сервер установлен (Asgard)\nОжидайте "ip ok"'); }
   sendLgtr() { this.sendSms('ip,5.9.136.109,3359', 'Сервер установлен (LiveGPS)\nОжидайте "ip ok"'); }
 
+  // LOAD-RELOAD SETTINGS WHEN OPENING PAGE
   ionViewDidEnter() {
     this.storage.get('useTest').then((val) => {
       let useTest = val;
@@ -82,6 +93,9 @@ export class ApnPage {
       } else {
         this.usePw = '523681';
       }
+    }).catch(err => console.log(err));
+    this.storage.get('spStatus').then((val) => {
+      if (val == null) { this.spStatus = false; } else { this.spStatus = val; }
     }).catch(err => console.log(err));
   }
 
