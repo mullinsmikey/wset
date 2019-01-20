@@ -9,15 +9,19 @@ import { Storage } from '@ionic/storage';
 export class InfoPage {
   // VARIABLES
   exMode: boolean;
-  spStatus: boolean;
-  spPone: boolean;
+  perm_ssms: boolean;
+  perm_rpst: boolean;
+  perm_rcns: boolean;
   info: boolean = false;
 
   // CONSTRUCTOR
-  constructor(public navCtrl: NavController,
+  constructor(
+    public navCtrl: NavController,
     public alertCtrl: AlertController,
     private storage: Storage,
-    public platform: Platform) { this.platform = platform; }
+    public platform: Platform) {
+      this.platform = platform;
+    }
 
   // REUSABLE FUNCTIONS
   openWeb(url: string) {
@@ -48,11 +52,14 @@ export class InfoPage {
     this.storage.get('exMode').then((val) => {
       if (val == null) { this.exMode = false; } else { this.exMode = val; }
     }).catch(err => console.log(err));
-    this.storage.get('spStatus').then((val) => {
-      if (val == null) { this.spStatus = false; } else { this.spStatus = val; }
+    this.storage.get('perm_ssms').then((val) => {
+      if (val == null) { this.perm_ssms = false; } else { this.perm_ssms = val; }
     }).catch(err => console.log(err));
-    this.storage.get('spPone').then((val) => {
-      if (val == null) { this.spPone = false; } else { this.spPone = val; }
+    this.storage.get('perm_rpst').then((val) => {
+      if (val == null) { this.perm_rpst = false; } else { this.perm_rpst = val; }
+    }).catch(err => console.log(err));
+    this.storage.get('perm_rcns').then((val) => {
+      if (val == null) { this.perm_rcns = false; } else { this.perm_rcns = val; }
     }).catch(err => console.log(err));
   }
 

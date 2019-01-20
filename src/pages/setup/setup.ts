@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
 import { Platform, NavController, ModalController, AlertController } from 'ionic-angular';
 import { HelpPage } from '../help/help';
-import { Diagnostic } from '@ionic-native/diagnostic';
 import { Storage } from '@ionic/storage';
+import { WelcomePage } from '../welcome/welcome';
+import { Contacts, Contact } from '@ionic-native/contacts';
 
 @Component({
   selector: 'page-setup',
-  templateUrl: 'setup.html',
-  providers: [ ModalController ]
+  templateUrl: 'setup.html'
 })
 export class SetupPage {
   // VARIABLES
-  spPone: boolean;
+  perm_ssms: boolean;
+  perm_rpst: boolean;
+  perm_pone: boolean;
   simTest: string;
   simClient: string;
   useTest: boolean;
@@ -21,12 +23,13 @@ export class SetupPage {
   tSimField: string;
 
   // CONSTRUCTOR
-  constructor(public navCtrl: NavController,
+  constructor(
+    public navCtrl: NavController,
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
-    private diagnostic: Diagnostic,
     public platform: Platform,
-    private storage: Storage) {}
+    public storage: Storage,
+    private contacts: Contacts) {}
 
   // REUSABLE FUNCTIONS
   openHelp() {
@@ -36,49 +39,14 @@ export class SetupPage {
 
   // CHECK-REQUEST SMS PERMISSION
   checkSms() {
-    this.diagnostic.getPermissionAuthorizationStatus(this.diagnostic.permission.SEND_SMS).then((status) => {
-      if (status == this.diagnostic.permissionStatus.GRANTED) {
-        this.storage.set('spStatus', true); this.storage.set('spPone', false);
-      } else {
-        const alert = this.alertCtrl.create({
-          subTitle: 'Для корректной работы приложения необходимо разрешение на отправку SMS-сообщений',
-          buttons: [
-            { text: 'Позже',
-              handler: () => { this.storage.set('spStatus', false); this.storage.set('spPone', true); }
-            },
-            { text: 'Разрешить',
-              handler: () => {
-                if (status != this.diagnostic.permissionStatus.DENIED_ALWAYS) {
-                  this.diagnostic.requestRuntimePermission(this.diagnostic.permission.SEND_SMS).then((data) => {
-                    if (data == this.diagnostic.permissionStatus.GRANTED) {
-                      this.storage.set('spStatus', true); this.storage.set('spPone', false);
-                      const alert = this.alertCtrl.create({
-                        subTitle: 'Приложение будет закрыто для принятия изменений',
-                        buttons: [{
-                          text: 'OK',
-                          handler: () => { this.platform.exitApp(); }
-                        }]
-                      }); alert.present();
-                    } else {
-                      this.storage.set('spStatus', false); this.storage.set('spPone', true);
-                    }
-                  });
-                } else {
-                  const alert = this.alertCtrl.create({
-                    subTitle: 'К сожалению, вы запретили приложению запрашивать доступ к отправке SMS. Пожалуйста, дайте доступ вручную через Настройки. Приложение будет закрыто в ожидании разрешения.',
-                    buttons: [{
-                      text: 'OK',
-                      handler: () => { this.platform.exitApp(); }
-                    }]
-                  }); alert.present();
-                }
-              }
-            }
-          ]
-        }); alert.present();
-      }
-    }, (err) => { console.log(err); });
-}
+    this.navCtrl.push(WelcomePage, { slide: 'perms' });
+  }
+
+  getContact() {
+    this.contacts.pickContact().then((response: Contact) => {
+      this.simTest = response.phoneNumbers[0].value;
+    });
+  }
 
   // SAVE SETTINGS WHEN CLOSING PAGE
   ionViewWillLeave() {
@@ -90,8 +58,14 @@ export class SetupPage {
 
   // LOAD-RELOAD SETTINGS WHEN OPENING PAGE
   ionViewDidLoad() {
-    this.storage.get('spPone').then((val) => {
-      if (val == null) { this.spPone = true; } else { this.spPone = val; }
+    this.storage.get('perm_ssms').then(vssms => {
+      this.perm_ssms = vssms;
+      this.storage.get('perm_rpst').then(vrpst => {
+        this.perm_rpst = vrpst;
+        if ((!this.perm_ssms) || (!this.perm_rpst)) {
+          this.perm_pone = true;
+        }
+      }).catch(err => console.log(err));
     }).catch(err => console.log(err));
     this.storage.get('simTest').then((val) => {
       this.simTest = val;

@@ -34,10 +34,10 @@
     <ion-list-header no-lines (click)="showInf()">Информация {{ info == true ? '(закрыть)' : '(открыть)' }}</ion-list-header>
     <ion-item *ngIf="info">
       <ion-label item-left>Версия</ion-label>
-      <ion-label item-right text-right>1.1.2</ion-label>
+      <ion-label item-right text-right>1.2.0</ion-label>
     </ion-item>
     <ion-item *ngIf="info">
-      <ion-label item-left>Framework</ion-label>
+      <ion-label item-left>IFwr</ion-label>
       <ion-label item-right text-right>3.9.2</ion-label>
     </ion-item>
     <ion-item *ngIf="info">
@@ -45,12 +45,16 @@
       <ion-label item-right text-right>7.1.0</ion-label>
     </ion-item>
     <ion-item *ngIf="info">
-      <ion-label item-left color="softgray">sp Status</ion-label>
-      <ion-label item-right text-right color="softgray">{{ spStatus == true ? 'OK' : 'no' }}</ion-label>
+      <ion-label item-left color="softgray">Send Sms</ion-label>
+      <ion-label item-right text-right color="softgray">{{ perm_ssms == true ? 'OK' : 'no' }}</ion-label>
     </ion-item>
     <ion-item *ngIf="info">
-      <ion-label item-left color="softgray">sp Postpone</ion-label>
-      <ion-label item-right text-right color="softgray">{{ spPone == true ? 'yes' : 'no' }}</ion-label>
+      <ion-label item-left color="softgray">Read PState</ion-label>
+      <ion-label item-right text-right color="softgray">{{ perm_rpst == true ? 'OK' : 'no' }}</ion-label>
+    </ion-item>
+    <ion-item *ngIf="info">
+      <ion-label item-left color="softgray">Read Conts</ion-label>
+      <ion-label item-right text-right color="softgray">{{ perm_rcns == true ? 'OK' : 'no' }}</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>

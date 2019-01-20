@@ -2,8 +2,11 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Diagnostic } from '@ionic-native/diagnostic';
+import { Contacts } from '@ionic-native/contacts';
+import { SMS } from '@ionic-native/sms';
 import { WSet } from './app.component';
 
+import { WelcomePage } from '../pages/welcome/welcome';
 import { ApnPage } from '../pages/apn/apn';
 import { DatePage } from '../pages/date/date';
 import { MastersPage } from '../pages/masters/masters';
@@ -21,6 +24,7 @@ import { ExtraPage } from '../pages/extra/extra';
 import { CommandsPage } from '../pages/commands/commands';
 import { SetupPage } from '../pages/setup/setup';
 import { TabsPage } from '../pages/tabs/tabs';
+import { Security, Messages } from '../providers';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -29,6 +33,7 @@ import { IonicStorageModule } from '@ionic/storage';
 @NgModule({
   declarations: [
     WSet,
+    WelcomePage,
     ApnPage,
     DatePage,
     MastersPage,
@@ -54,6 +59,7 @@ import { IonicStorageModule } from '@ionic/storage';
   bootstrap: [IonicApp],
   entryComponents: [
     WSet,
+    WelcomePage,
     ApnPage,
     DatePage,
     MastersPage,
@@ -72,9 +78,13 @@ import { IonicStorageModule } from '@ionic/storage';
     TabsPage
   ],
   providers: [
+    Security,
+    Messages,
+    SMS,
     StatusBar,
     SplashScreen,
     Diagnostic,
+    Contacts,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

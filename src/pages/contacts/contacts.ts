@@ -1,20 +1,13 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController, ModalController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { HelpPage } from '../help/help';
-import { Storage } from '@ionic/storage';
-import { SMS } from '@ionic-native/sms';
+import { Messages } from '../../providers';
 
 @Component({
   selector: 'page-contacts',
-  templateUrl: 'contacts.html',
-  providers: [ ToastController, ModalController, SMS ]
+  templateUrl: 'contacts.html'
 })
 export class ContactsPage {
-  // VARIABLES
-  // settings
-  usePw: string;
-  simSend: string;
-  spStatus: boolean;
   // commands
   cName1: string; cName2: string; cName3: string; cName4: string; cName5: string;
   cTel1: string; cTel2: string; cTel3: string; cTel4: string; cTel5: string;
@@ -28,37 +21,15 @@ export class ContactsPage {
   utfCL = ['0430','0431','0432','0433','0434','0435','0451','0436','0437','0438','0439','043A','043B','043C','043D','043E','043F','0440','0441','0442','0443','0444','0445','0446','0447','0448','0449','044A','044B','044C','044D','044E','044F'];
   utfCU = ['0410','0411','0412','0413','0414','0415','0401','0416','0417','0418','0419','041A','041B','041C','041D','041E','041F','0420','0421','0422','0423','0424','0425','0426','0427','0428','0429','042A','042B','042C','042D','042E','042F'];
 
-  constructor(public navCtrl: NavController,
-    private toastCtrl: ToastController, public modalCtrl: ModalController,
-    private storage: Storage, private sms: SMS) {}
+  constructor(
+    public navCtrl: NavController,
+    public modalCtrl: ModalController,
+    public messages: Messages) {}
 
   // REUSABLE FUNCTIONS
   openHelp() {
     let helpModal = this.modalCtrl.create(HelpPage, { helpIs: 'contacts' });
     helpModal.present();
-  }
-  presentToast(tText: string) {
-    let toast = this.toastCtrl.create({
-      message: tText,
-      duration: 3000,
-      position: 'top',
-      showCloseButton: true,
-      closeButtonText: 'OK',
-      dismissOnPageChange: true
-    });
-    toast.present();
-  }
-  sendSms(cmd: string, toast: string) {
-    if ((this.spStatus) && (this.simSend != null) && (this.simSend != '')) {
-      let sendTo = this.simSend;
-      let cmdStr = 'pw,' + this.usePw + ',' + cmd + '#';
-      this.sms.send(sendTo, cmdStr).catch(err => console.log(err));
-      this.presentToast(toast);
-    } else if (!this.spStatus) {
-      this.presentToast('Нет доступа к отправке SMS\nРазрешите на вкладке Настройки');
-    } else {
-      this.presentToast('Неверно указан номер SIM\nИзмените на вкладке Настройки');
-    }
   }
 
   utf16Enc(toEnc: string) {
@@ -88,30 +59,7 @@ export class ContactsPage {
       con5 = this.cTel5 + ',' + this.utf16Enc(this.cName5);
     }
     var conts = con1 + con2 + con3 + con4 + con5;
-    this.sendSms('phb,' + conts, 'Номера отправлены\nОжидайте записи');
-  }
-
-  // LOAD-RELOAD SETTINGS WHEN OPENING PAGE
-  ionViewDidEnter() {
-    this.storage.get('useTest').then((val) => {
-      let useTest = val;
-      if (useTest == true) {
-        this.storage.get('simTest').then((val) => { this.simSend = val; }).catch(err => console.log(err));
-      } else {
-        this.storage.get('simClient').then((val) => { this.simSend = val; }).catch(err => console.log(err));
-      }
-    }).catch(err => console.log(err));
-    this.storage.get('useStdPw').then((val) => {
-      let useStdPw = val;
-      if (useStdPw == true) {
-        this.usePw = '123456';
-      } else {
-        this.usePw = '523681';
-      }
-    }).catch(err => console.log(err));
-    this.storage.get('spStatus').then((val) => {
-      if (val == null) { this.spStatus = false; } else { this.spStatus = val; }
-    }).catch(err => console.log(err));
+    this.messages.send('phb,' + conts, 'Номера отправлены\nОжидайте записи');
   }
 
 }
