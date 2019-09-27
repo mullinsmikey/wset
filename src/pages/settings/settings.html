@@ -10,7 +10,7 @@
   <ion-list>
     <ion-item-divider color="light">Интервал отправки геопозиции</ion-item-divider>
     <ion-item>
-      <ion-label floating>Секунды</ion-label>
+      <ion-label floating>В минутах</ion-label>
       <ion-input [(ngModel)]="uploadSec" type="number"></ion-input>
     </ion-item>
     <ion-item>
@@ -23,13 +23,6 @@
         <ion-col col-6><button ion-button full (click)="turnSosOff();">Выключить</button></ion-col>
       </ion-row></ion-grid>
     </ion-item>
-    <ion-item-divider color="light">Шрифт цифр</ion-item-divider>
-    <ion-item>
-      <ion-grid><ion-row>
-        <ion-col col-6><button ion-button full (click)="turnBigOn();">Толстый</button></ion-col>
-        <ion-col col-6><button ion-button full (click)="turnBigOff();">Обычный</button></ion-col>
-      </ion-row></ion-grid>
-    </ion-item>
     <ion-item-divider color="light">Голосовые сообщения</ion-item-divider>
     <ion-item>
       <ion-grid><ion-row>
@@ -37,32 +30,11 @@
         <ion-col col-6><button ion-button full (click)="turnTkOff();">Выключить</button></ion-col>
       </ion-row></ion-grid>
     </ion-item>
-    <ion-item-divider color="light">Bluetooth</ion-item-divider>
-    <ion-item>
-      <ion-grid><ion-row>
-        <ion-col col-6><button ion-button full (click)="turnBtOn();">Включить</button></ion-col>
-        <ion-col col-6><button ion-button full (click)="turnBtOff();">Выключить</button></ion-col>
-      </ion-row></ion-grid>
-    </ion-item>
     <ion-item-divider color="light">Шагомер</ion-item-divider>
     <ion-item>
       <ion-grid><ion-row>
         <ion-col col-6><button ion-button full (click)="turnPedOn();">Включить</button></ion-col>
         <ion-col col-6><button ion-button full (click)="turnPedOff();">Выключить</button></ion-col>
-      </ion-row></ion-grid>
-    </ion-item>
-    <ion-item-divider color="light">Дружить</ion-item-divider>
-    <ion-item>
-      <ion-grid><ion-row>
-        <ion-col col-6><button ion-button full (click)="turnFriOn();">Включить</button></ion-col>
-        <ion-col col-6><button ion-button full (click)="turnFriOff();">Выключить</button></ion-col>
-      </ion-row></ion-grid>
-    </ion-item>
-    <ion-item-divider color="light">Записная книга</ion-item-divider>
-    <ion-item>
-      <ion-grid><ion-row>
-        <ion-col col-6><button ion-button full (click)="turnPhbOn();">Включить</button></ion-col>
-        <ion-col col-6><button ion-button full (click)="turnPhbOff();">Выключить</button></ion-col>
       </ion-row></ion-grid>
     </ion-item>
   </ion-list>

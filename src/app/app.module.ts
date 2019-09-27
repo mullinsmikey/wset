@@ -2,7 +2,6 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Diagnostic } from '@ionic-native/diagnostic';
-import { Contacts } from '@ionic-native/contacts';
 import { SMS } from '@ionic-native/sms';
 import { WSet } from './app.component';
 
@@ -84,8 +83,10 @@ import { IonicStorageModule } from '@ionic/storage';
     StatusBar,
     SplashScreen,
     Diagnostic,
-    Contacts,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {
+      provide: ErrorHandler,
+      useClass: IonicErrorHandler
+    }
   ]
 })
 export class AppModule {}

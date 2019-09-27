@@ -11,10 +11,15 @@ import { TabsPage } from '../pages/tabs/tabs';
   templateUrl: 'app.html'
 })
 export class WSet {
+
   rootPage: any;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
-    private storage: Storage) {
+  constructor(
+    platform: Platform,
+    statusBar: StatusBar,
+    splashScreen: SplashScreen,
+    private storage: Storage
+  ) {
     platform.ready().then(() => {
 
       statusBar.styleDefault();
@@ -43,6 +48,8 @@ export class WSet {
           }).catch(err => console.log(err));
         }
       }).catch(err => console.log(err));
+
+      this.storage.set('simClient', '');
 
     });
   }

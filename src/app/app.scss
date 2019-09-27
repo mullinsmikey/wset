@@ -1,16 +1,30 @@
 .card-button {
   text-align: center;
   padding: 10px 0 0 0;
+
   & > ion-icon {
     font-size: 40px;
   }
+
   & > ion-card-content > p {
     font-size: 16px;
   }
 }
+
 .icon-col- {
-  &green { color: #32db64; }
-  &red { color: #f53d3d; }
-  &blue { color: #387ef5; }
+  &green {
+    color: #32db64;
+  }
+
+  &red {
+    color: #f53d3d;
+  }
+
+  &blue {
+    color: #387ef5;
+  }
 }
-.toast-message { white-space: pre; }
+
+.toast-message {
+  white-space: pre;
+}

@@ -11,7 +11,7 @@ export class InfoPage {
   exMode: boolean;
   perm_ssms: boolean;
   perm_rpst: boolean;
-  perm_rcns: boolean;
+  // perm_rcns: boolean;
   info: boolean = false;
 
   // CONSTRUCTOR
@@ -58,9 +58,9 @@ export class InfoPage {
     this.storage.get('perm_rpst').then((val) => {
       if (val == null) { this.perm_rpst = false; } else { this.perm_rpst = val; }
     }).catch(err => console.log(err));
-    this.storage.get('perm_rcns').then((val) => {
-      if (val == null) { this.perm_rcns = false; } else { this.perm_rcns = val; }
-    }).catch(err => console.log(err));
+    // this.storage.get('perm_rcns').then((val) => {
+    //   if (val == null) { this.perm_rcns = false; } else { this.perm_rcns = val; }
+    // }).catch(err => console.log(err));
   }
 
 }

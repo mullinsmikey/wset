@@ -7,6 +7,7 @@ export class Security {
 
   constructor() { }
 
+
   check(phone: string) : any {
     return new Promise((resolve) => {
       if ((phone != null) && (phone != '') && (phone.charAt(0) == '+')) {
@@ -28,4 +29,5 @@ export class Security {
   //   });
   // }
 
+  /* class end */
 }

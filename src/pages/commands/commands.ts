@@ -12,15 +12,16 @@ export class CommandsPage {
   // settings
   exMode: boolean;
   // commands
-  uploadSec: string;
-  moniTo: string;
-  callTo: string;
+  uploadSec: number = 15;
+  moniTo: string = '8';
+  callTo: string = '8';
 
   constructor(
     public navCtrl: NavController,
     public modalCtrl: ModalController,
     private storage: Storage,
-    public messages: Messages) {}
+    public messages: Messages
+  ) {}
 
   // REUSABLE FUNCTIONS
   openHelp() {
@@ -38,7 +39,7 @@ export class CommandsPage {
   sendSeEu() { this.messages.send('ip,52.28.132.157,8001', 'Сервер установлен (Se Европа)\nОжидайте "ip ok"'); }
   moniMake() { this.messages.send('monitor,' + this.moniTo, 'Запрос отправлен\nОжидайте звонка'); }
   callMake() { this.messages.send('monitor,' + this.callTo, 'Запрос отправлен\nОжидайте звонка'); }
-  setUpload() { this.messages.send('upload,' + this.uploadSec, 'Интервал установлен\nОжидайте ответа'); }
+  setUpload() { this.messages.send('upload,' + this.uploadSec * 60, 'Интервал установлен\nОжидайте ответа'); }
 
   // LOAD-RELOAD SETTINGS WHEN OPENING PAGE
   ionViewDidEnter() {

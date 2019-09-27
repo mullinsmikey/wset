@@ -1,34 +1,37 @@
-
 <ion-slides padding [ngSwitch]="showSlide">
+
   <ion-slide *ngSwitchCase="'hi'">
     <h2 class="slide-title">Привет!</h2>
     <p>Спасибо, что решили воспользоваться WatchSet</p>
     <br>
     <button ion-button outline icon-only large round (click)="goPerms()" class="realround"><ion-icon name="arrow-forward"></ion-icon></button>
   </ion-slide>
+
   <ion-slide *ngSwitchCase="'perms'">
     <p [innerHtml]="textSsms"></p>
     <button ion-button large clear (click)="permitSms()" *ngIf="perm_ssms == false">Разрешить</button>
     <br>
     <p [innerHtml]="textRpst"></p>
     <button ion-button large clear (click)="permitRps()" *ngIf="perm_rpst == false">Разрешить</button>
-    <br>
-    <p [innerHtml]="textRcns"></p>
-    <button ion-button large clear (click)="permitRcs()" *ngIf="perm_rcns == false">Разрешить</button>
+    <!--<br>-->
+    <!--<p [innerHtml]="textRcns"></p>-->
+    <!--<button ion-button large clear (click)="permitRcs()" *ngIf="perm_rcns == false">Разрешить</button>-->
+
     <div class="footer">
-      <button ion-button outline icon-only large round (click)="gpg('hi')" class="buleft realround" *ngIf="welDone == false"><ion-icon name="arrow-back"></ion-icon></button>
-      <button ion-button outline icon-only large round (click)="gpg('done')" class="buright realround"><ion-icon name="arrow-forward"></ion-icon></button>
+      <button ion-button outline icon-only large (click)="gpg('hi')" class="buleft" *ngIf="welDone == false"><ion-icon name="arrow-back"></ion-icon></button>
+      <button ion-button outline icon-only large (click)="gpg('done')" class="buright"><ion-icon name="arrow-forward"></ion-icon></button>
     </div>
   </ion-slide>
+
   <ion-slide *ngSwitchCase="'done'">
     <h2 class="slide-title">Давайте начнем</h2>
     <p>Запустите приложение, чтобы начать знакомство с функциями!</p>
     <button ion-button outline icon-only large round (click)="startApp()" class="realround"><ion-icon name="arrow-forward"></ion-icon></button>
+
     <div class="footer">
       <button ion-button outline icon-only large round (click)="goPerms()" class="buleft realround"><ion-icon name="arrow-back"></ion-icon></button>
       <button ion-button clear small (click)="stopApp()" class="buright">Расширенный</button>
     </div>
   </ion-slide>
-
 
 </ion-slides>

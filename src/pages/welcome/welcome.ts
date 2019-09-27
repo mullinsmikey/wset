@@ -13,12 +13,12 @@ export class WelcomePage {
   showSlide = "hi";
   perm_ssms: boolean;
   perm_rpst: boolean;
-  perm_rcns: boolean;
+  // perm_rcns: boolean;
   skip_ssms: boolean;
   skip_rpst: boolean;
   textSsms: string;
   textRpst: string;
-  textRcns: string;
+  // textRcns: string;
   welDone: boolean;
 
   constructor(
@@ -27,7 +27,8 @@ export class WelcomePage {
     public platform: Platform,
     public alertCtrl: AlertController,
     private diagnostic: Diagnostic,
-    private storage: Storage) {
+    private storage: Storage
+  ) {
       if (navParams.get('slide') != null) {
         this.showSlide = navParams.get('slide');
         if (this.showSlide == "perms") { this.goPerms(); }
@@ -67,7 +68,7 @@ export class WelcomePage {
         this.textSsms = "Отлично!<br>Отправка SMS сообщений разрешена";
       } else {
         this.storage.set('perm_ssms', false); this.perm_ssms = false;
-        this.textSsms = "Для работы необходимо разрешение на отправку SMS сообщений";
+        this.textSsms = "WatchSet создан исключительно для Вашего удобства. Для корректной работы, пожалуйста, разрешите отправку SMS (только по Вашей команде)";
       }
     }).catch(err => console.log(err));
     this.diagnostic.getPermissionAuthorizationStatus(this.diagnostic.permission.READ_PHONE_STATE).then((status) => {
@@ -76,16 +77,7 @@ export class WelcomePage {
         this.textRpst = "Отлично!<br>Чтение состояния телефона разрешено";
       } else {
         this.storage.set('perm_rpst', false); this.perm_rpst = false;
-        this.textRpst = "Для корректной работы на Android 8 и выше, необходимо разрешение на чтение состояния телефона";
-      }
-    }).catch(err => console.log(err));
-    this.diagnostic.getPermissionAuthorizationStatus(this.diagnostic.permission.READ_CONTACTS).then((status) => {
-      if (status == this.diagnostic.permissionStatus.GRANTED) {
-        this.perm_rcns = true;
-        this.textRcns = "Отлично!<br>Чтение контактов разрешено";
-      } else {
-        this.perm_rcns = false;
-        this.textRcns = "Для работы дополнительных функций, необходимо разрешение на чтение контактов";
+        this.textRpst = "Для корректной работы на Android 8+ необходимо разрешение на 'чтение состояния телефона'";
       }
     }).catch(err => console.log(err));
     this.showSlide = "perms";
@@ -101,7 +93,7 @@ export class WelcomePage {
             this.textSsms = "Отлично!<br>Отправка SMS сообщений разрешена";
           } else {
             this.storage.set('perm_ssms', false); this.perm_ssms = false;
-            this.textSsms = "Для работы необходимо разрешение на отправку SMS сообщений";
+            this.textSsms = "WatchSet создан исключительно для Вашего удобства. Для корректной работы, пожалуйста, разрешите отправку SMS (только по Вашей команде)";
           }
           this.goPerms();
         }).catch(err => console.log(err));
@@ -126,7 +118,7 @@ export class WelcomePage {
             this.textRpst = "Отлично!<br>Чтение состояния телефона разрешено";
           } else {
             this.storage.set('perm_rpst', false); this.perm_rpst = false;
-            this.textRpst = "Для корректной работы на Android 8 и выше, необходимо разрешение на чтение состояния телефона";
+            this.textRpst = "Для корректной работы на Android 8+ необходимо разрешение на 'чтение состояния телефона'";
           }
           this.goPerms();
         }).catch(err => console.log(err));
@@ -141,29 +133,29 @@ export class WelcomePage {
     }).catch(err => console.log(err));
   }
 
-  permitRcs() {
-    this.diagnostic.getPermissionAuthorizationStatus(this.diagnostic.permission.READ_CONTACTS).then((status) => {
-
-      if (status != this.diagnostic.permissionStatus.DENIED_ALWAYS) {
-        this.diagnostic.requestRuntimePermission(this.diagnostic.permission.READ_CONTACTS).then((data) => {
-          if (data == this.diagnostic.permissionStatus.GRANTED) {
-            this.perm_rcns = true;
-            this.textRcns = "Отлично!<br>Чтение контактов разрешено";
-          } else {
-            this.perm_rcns = false;
-            this.textRcns = "Для работы дополнительных функций, необходимо разрешение на чтение контактов";
-          }
-          this.goPerms();
-        }).catch(err => console.log(err));
-      } else {
-        const alert = this.alertCtrl.create({
-          subTitle: 'К сожалению, вы запретили приложению запрашивать доступ к контактам. Пожалуйста, разрешите доступ вручную через Настройки. Приложение будет закрыто в ожидании разрешения.',
-          buttons: [{ text: 'OK', handler: () => { this.platform.exitApp(); }
-          }]
-        }); alert.present();
-      }
-    }).catch(err => console.log(err));
-  }
+  // permitRcs() {
+  //   this.diagnostic.getPermissionAuthorizationStatus(this.diagnostic.permission.READ_CONTACTS).then((status) => {
+  //
+  //     if (status != this.diagnostic.permissionStatus.DENIED_ALWAYS) {
+  //       this.diagnostic.requestRuntimePermission(this.diagnostic.permission.READ_CONTACTS).then((data) => {
+  //         if (data == this.diagnostic.permissionStatus.GRANTED) {
+  //           this.perm_rcns = true;
+  //           this.textRcns = "Отлично!<br>Чтение контактов разрешено";
+  //         } else {
+  //           this.perm_rcns = false;
+  //           this.textRcns = "Вы можете указать номер часов из списка контактов, осталось разрешить WatchSet доступ к ним";
+  //         }
+  //         this.goPerms();
+  //       }).catch(err => console.log(err));
+  //     } else {
+  //       const alert = this.alertCtrl.create({
+  //         subTitle: 'К сожалению, вы запретили приложению запрашивать доступ к контактам. Пожалуйста, разрешите доступ вручную через Настройки. Приложение будет закрыто в ожидании разрешения.',
+  //         buttons: [{ text: 'OK', handler: () => { this.platform.exitApp(); }
+  //         }]
+  //       }); alert.present();
+  //     }
+  //   }).catch(err => console.log(err));
+  // }
 
   goDone() {
     this.storage.get('perm_ssms').then((vssms) => {

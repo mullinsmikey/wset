@@ -3,7 +3,6 @@ import { Platform, NavController, ModalController, AlertController } from 'ionic
 import { HelpPage } from '../help/help';
 import { Storage } from '@ionic/storage';
 import { WelcomePage } from '../welcome/welcome';
-import { Contacts, Contact } from '@ionic-native/contacts';
 
 @Component({
   selector: 'page-setup',
@@ -28,8 +27,8 @@ export class SetupPage {
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
     public platform: Platform,
-    public storage: Storage,
-    private contacts: Contacts) {}
+    public storage: Storage
+  ) { }
 
   // REUSABLE FUNCTIONS
   openHelp() {
@@ -42,11 +41,11 @@ export class SetupPage {
     this.navCtrl.push(WelcomePage, { slide: 'perms' });
   }
 
-  getContact() {
-    this.contacts.pickContact().then((response: Contact) => {
-      this.simTest = response.phoneNumbers[0].value;
-    });
-  }
+  // getContact() {
+  //   this.contacts.pickContact().then((response: Contact) => {
+  //     this.simTest = response.phoneNumbers[0].value;
+  //   });
+  // }
 
   // SAVE SETTINGS WHEN CLOSING PAGE
   ionViewWillLeave() {
@@ -82,8 +81,8 @@ export class SetupPage {
     this.storage.get('exMode').then((val) => {
       if (val == null) { this.exMode = false; } else { this.exMode = val; }
       if (this.exMode == true) {
-        this.tSimHead = 'Номер тестовой SIM-карты';
-        this.tSimField = 'Тестовая SIM';
+        this.tSimHead = 'Номер первой SIM-карты';
+        this.tSimField = 'Первая SIM';
       } else {
         this.tSimHead = 'SIM-карта в часах';
         this.tSimField = 'Номер SIM';

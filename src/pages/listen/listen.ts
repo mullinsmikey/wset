@@ -9,8 +9,8 @@ import { Messages } from '../../providers';
 })
 export class ListenPage {
   // commands
-  moniTo: string;
-  callTo: string;
+  moniTo: string = '8';
+  callTo: string = '8';
 
   constructor(
     public navCtrl: NavController,

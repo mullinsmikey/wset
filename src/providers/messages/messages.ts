@@ -1,7 +1,7 @@
 import 'rxjs/add/operator/toPromise';
 
-import { ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { ToastController } from 'ionic-angular';
 import { SMS } from '@ionic-native/sms';
 import { Security } from '../';
 
@@ -13,8 +13,10 @@ export class Messages {
   constructor(
     private storage: Storage,
     public toastCtrl: ToastController,
-    private security: Security,
-    public sms: SMS) { }
+    public sms: SMS,
+    private security: Security
+  ) { }
+
 
   send(cmd: string, toast: string) {
     let gn, gp, cmdStr: string;
@@ -41,6 +43,7 @@ export class Messages {
     });
     return;
   }
+
   getPerms() : any {
     return new Promise((resolve) => {
       let ssms, rpst: boolean;
@@ -57,6 +60,7 @@ export class Messages {
       }).catch(err => console.log(err));
     });
   }
+
   getNumber() : any {
     return new Promise((resolve) => {
       this.storage.get('useTest').then((uts) => {
@@ -68,6 +72,7 @@ export class Messages {
       }).catch(err => console.log(err));
     });
   }
+
   getPass() : any {
     return new Promise((resolve) => {
       this.storage.get('useStdPw').then((usp) => {
@@ -79,6 +84,7 @@ export class Messages {
       }).catch(err => console.log(err));
     });
   }
+
   showToast(tText: string) {
     let toast = this.toastCtrl.create({
       message: tText,
@@ -91,4 +97,5 @@ export class Messages {
     toast.present();
   }
 
+  /* class end */
 }
