@@ -1,0 +1,22 @@
+<ion-header no-border>
+    <ion-toolbar>
+        <ion-title>Все функции</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+
+    <ion-list>
+        <ng-container *ngFor="let item of menuItems">
+
+            <ion-item *ngIf="!item.extended || item.extended && em.extendedMode"
+                      (click)="navigation.forwardNoTab(item.path)" detail="true">
+                <ion-icon [name]="item.icon" slot="start" color="medium"></ion-icon>
+                <ion-label>{{ item.title }}</ion-label>
+            </ion-item>
+
+        </ng-container>
+    </ion-list>
+
+</ion-content>

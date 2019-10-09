@@ -1,0 +1,43 @@
+<ion-header no-border>
+    <ion-toolbar>
+        <ion-title>Настройки</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+
+    <ion-list>
+
+        <ion-item>
+            <ion-label position="stacked">{{ em.extendedMode ? 'SIM 1' : 'Номер в часах' }}</ion-label>
+            <ion-input [(ngModel)]="number1" type="tel"></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="em.extendedMode">
+            <ion-label>{{ usePrimary ? 'Sim 1' : 'Sim 2' }}</ion-label>
+            <ion-toggle [(ngModel)]="usePrimary"></ion-toggle>
+        </ion-item>
+
+        <ion-item *ngIf="em.extendedMode">
+            <ion-label position="stacked">SIM 2</ion-label>
+            <ion-input [(ngModel)]="number2" type="tel"></ion-input>
+        </ion-item>
+
+        <br>
+        <hr>
+        <br>
+
+        <ion-item>
+            <ion-label>Стандартный пароль</ion-label>
+            <ion-toggle [(ngModel)]="useStandPw"></ion-toggle>
+        </ion-item>
+
+        <ion-item *ngIf="!useStandPw">
+            <ion-label position="stacked">Пароль для часов</ion-label>
+            <ion-input [(ngModel)]="password" type="text"></ion-input>
+        </ion-item>
+
+    </ion-list>
+
+</ion-content>

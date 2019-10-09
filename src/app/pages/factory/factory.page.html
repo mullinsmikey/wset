@@ -1,0 +1,31 @@
+<ion-header no-border>
+    <ion-toolbar>
+
+        <ion-buttons slot="secondary">
+            <ion-button (click)="navigation.back()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+        <ion-title>Сброс настроек</ion-title>
+
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+
+    <ion-list>
+        <ion-item>
+            <ion-label class="ion-text-wrap">
+                Внимание! На часах будут сброшены все настройки.
+                <br>Привязка к приложениям отменена не будет!
+            </ion-label>
+        </ion-item>
+        <br>
+        <ion-button expand="block" (click)="exec()" color="danger">
+            <ion-icon slot="icon-only" name="send"></ion-icon>
+        </ion-button>
+    </ion-list>
+
+</ion-content>

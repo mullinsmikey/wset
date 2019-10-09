@@ -1,92 +1,38 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { Diagnostic } from '@ionic-native/diagnostic';
-import { SMS } from '@ionic-native/sms';
-import { WSet } from './app.component';
 
-import { WelcomePage } from '../pages/welcome/welcome';
-import { ApnPage } from '../pages/apn/apn';
-import { DatePage } from '../pages/date/date';
-import { MastersPage } from '../pages/masters/masters';
-import { SosnPage } from '../pages/sosn/sosn';
-import { QuicknPage } from '../pages/quickn/quickn';
-import { ListenPage } from '../pages/listen/listen';
-import { SettingsPage } from '../pages/settings/settings';
-import { ContactsPage } from '../pages/contacts/contacts';
-import { FactoryPage } from '../pages/factory/factory';
-import { HelpPage } from '../pages/help/help';
-import { HelpfullPage } from '../pages/helpfull/helpfull';
-import { InfoPage } from '../pages/info/info';
-import { ExtraPage } from '../pages/extra/extra';
+import { RouteReuseStrategy } from '@angular/router';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
-import { CommandsPage } from '../pages/commands/commands';
-import { SetupPage } from '../pages/setup/setup';
-import { TabsPage } from '../pages/tabs/tabs';
-import { Security, Messages } from '../providers';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { SMS } from '@ionic-native/sms/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+import { EmService } from '@app/services';
+// import { PipesModule } from '@pipes/pipes.module';
+
 @NgModule({
-  declarations: [
-    WSet,
-    WelcomePage,
-    ApnPage,
-    DatePage,
-    MastersPage,
-    SosnPage,
-    QuicknPage,
-    ListenPage,
-    SettingsPage,
-    ContactsPage,
-    FactoryPage,
-    HelpPage,
-    HelpfullPage,
-    InfoPage,
-    ExtraPage,
-    CommandsPage,
-    SetupPage,
-    TabsPage
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(WSet),
-    IonicStorageModule.forRoot()
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    WSet,
-    WelcomePage,
-    ApnPage,
-    DatePage,
-    MastersPage,
-    SosnPage,
-    QuicknPage,
-    ListenPage,
-    SettingsPage,
-    ContactsPage,
-    FactoryPage,
-    HelpPage,
-    HelpfullPage,
-    InfoPage,
-    ExtraPage,
-    CommandsPage,
-    SetupPage,
-    TabsPage
-  ],
-  providers: [
-    Security,
-    Messages,
-    SMS,
-    StatusBar,
-    SplashScreen,
-    Diagnostic,
-    {
-      provide: ErrorHandler,
-      useClass: IonicErrorHandler
-    }
-  ]
+    declarations: [AppComponent],
+    entryComponents: [],
+    imports: [
+        BrowserModule,
+        IonicModule.forRoot({ mode: 'ios' }),
+        AppRoutingModule,
+        IonicStorageModule.forRoot()
+    ],
+    providers: [
+        StatusBar,
+        SplashScreen,
+        SMS,
+        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+        EmService
+        // PipesModule
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}

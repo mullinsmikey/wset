@@ -1,0 +1,14 @@
+@import "../../../theme/ref-styles";
+// ---------------------------------------------------
+
+ion-text {
+    display: block;
+}
+
+.d-title {
+    margin-bottom: 5px;
+}
+
+.d-value {
+    @include sketch-text($sketch-small-gray, true);
+}

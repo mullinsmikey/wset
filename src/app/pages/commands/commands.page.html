@@ -1,0 +1,130 @@
+<ion-header no-border>
+    <ion-toolbar>
+        <ion-title>Команды</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+
+    <ng-container *ngIf="em.extendedMode">
+        <div class="x-grid">
+            <div class="x-row">
+
+                <div *ngFor="let btn of cmdSimple" (click)="exec(btn.command)" class="x-col x-col-6">
+                    <div class="product-card--card">
+                        <div class="product-card--image-container">
+                            <ion-icon class="product-card--image"
+                                      [name]="btn.icon" [color]="btn.color"></ion-icon>
+                        </div>
+                        <ion-text class="product-card--name product-card--name-no-card">
+                            {{ btn.title }}
+                        </ion-text>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="!em.extendedMode">
+        <div class="x-grid">
+            <div class="x-row">
+                <div class="x-col x-col-1"></div>
+                <div (click)="exec(cmdSimple[2].command)" class="x-col x-col-5">
+                    <div class="product-card--card">
+                        <div class="product-card--image-container">
+                            <ion-icon class="product-card--image"
+                                      [name]="cmdSimple[2].icon" [color]="cmdSimple[2].color"></ion-icon>
+                        </div>
+                        <ion-text class="product-card--name product-card--name-no-card">
+                            {{ cmdSimple[2].title }}
+                        </ion-text>
+                    </div>
+                </div>
+                <div (click)="exec(cmdSimple[3].command)" class="x-col x-col-5">
+                    <div class="product-card--card">
+                        <div class="product-card--image-container">
+                            <ion-icon class="product-card--image"
+                                      [name]="cmdSimple[3].icon" [color]="cmdSimple[3].color"></ion-icon>
+                        </div>
+                        <ion-text class="product-card--name product-card--name-no-card">
+                            {{ cmdSimple[3].title }}
+                        </ion-text>
+                    </div>
+                </div>
+                <div class="x-col x-col-1"></div>
+            </div>
+        </div>
+
+        <ion-list>
+            <ion-item>
+                <ion-label position="stacked">Номер для звонка</ion-label>
+                <ion-input [(ngModel)]="numPlainCall" type="tel"></ion-input>
+                <!--suppress JSIgnoredPromiseFromCall -->
+                <ion-button slot="end" (click)="sendPlainCall()" fill="clear">
+                    <ion-icon slot="icon-only" name="send"></ion-icon>
+                </ion-button>
+            </ion-item>
+
+            <br>
+            <hr>
+            <br>
+
+            <ion-item>
+                <ion-label position="stacked">Номер для прослушки</ion-label>
+                <ion-input [(ngModel)]="numEavesdrop" type="tel"></ion-input>
+                <!--suppress JSIgnoredPromiseFromCall -->
+                <ion-button slot="end" (click)="sendEavesdrop()" fill="clear">
+                    <ion-icon slot="icon-only" name="send"></ion-icon>
+                </ion-button>
+            </ion-item>
+        </ion-list>
+
+        <br>
+        <hr>
+        <br>
+
+        <ion-list-header>Интервал отправки геопозиции</ion-list-header>
+        <ion-list>
+            <ion-item>
+                <ion-label position="stacked">В минутах</ion-label>
+                <ion-input [(ngModel)]="uploadMin" type="tel"></ion-input>
+                <!--suppress JSIgnoredPromiseFromCall -->
+                <ion-button slot="end" (click)="sendUpload()" fill="clear">
+                    <ion-icon slot="icon-only" name="send"></ion-icon>
+                </ion-button>
+            </ion-item>
+        </ion-list>
+
+        <div class="x-grid">
+            <div class="x-row">
+                <div class="x-col x-col-1"></div>
+                <div (click)="exec(cmdSimple[4].command)" class="x-col x-col-5">
+                    <div class="product-card--card">
+                        <div class="product-card--image-container">
+                            <ion-icon class="product-card--image"
+                                      [name]="cmdSimple[4].icon" [color]="cmdSimple[4].color"></ion-icon>
+                        </div>
+                        <ion-text class="product-card--name product-card--name-no-card">
+                            {{ cmdSimple[4].title }}
+                        </ion-text>
+                    </div>
+                </div>
+                <div (click)="exec(cmdSimple[5].command)" class="x-col x-col-5">
+                    <div class="product-card--card">
+                        <div class="product-card--image-container">
+                            <ion-icon class="product-card--image"
+                                      [name]="cmdSimple[5].icon" [color]="cmdSimple[5].color"></ion-icon>
+                        </div>
+                        <ion-text class="product-card--name product-card--name-no-card">
+                            {{ cmdSimple[5].title }}
+                        </ion-text>
+                    </div>
+                </div>
+                <div class="x-col x-col-1"></div>
+            </div>
+        </div>
+    </ng-container>
+
+</ion-content>

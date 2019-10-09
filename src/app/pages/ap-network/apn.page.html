@@ -1,0 +1,70 @@
+<ion-header no-border>
+    <ion-toolbar>
+
+        <ion-buttons slot="secondary">
+            <ion-button (click)="navigation.back()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+        <ion-title>Настройки связи</ion-title>
+
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+
+    <ion-segment (ionChange)="segmentChanged($event)" value="auto">
+        <ion-segment-button value="auto">
+            <ion-label>Авто</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="manual">
+            <ion-label>Вручную</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+    <br>
+
+    <ng-container [ngSwitch]="apnTab">
+
+        <ng-container *ngSwitchCase="'auto'">
+            <ng-container *ngFor="let operator of mobileOps">
+                <ion-list-header>{{ operator.title }}</ion-list-header>
+                <ion-list>
+                    <ion-item *ngFor="let apnConf of operator.configs">
+                        <ion-label class="ion-text-wrap">
+                            <ion-text class="d-title">{{ apnConf.title }}</ion-text>
+                            <ion-text class="d-value">{{ apnConf.subtitle }}</ion-text>
+                        </ion-label>
+                        <ion-button slot="end" (click)="exec(apnConf.id)" fill="clear">
+                            <ion-icon slot="icon-only" name="send"></ion-icon>
+                        </ion-button>
+                    </ion-item>
+                </ion-list>
+            </ng-container>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'manual'">
+            <ion-list>
+                <ion-item>
+                    <ion-label position="stacked">Адрес APN</ion-label>
+                    <ion-input [(ngModel)]="manApn" type="text"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Логин</ion-label>
+                    <ion-input [(ngModel)]="manLogin" type="text"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Пароль</ion-label>
+                    <ion-input [(ngModel)]="manPass" type="text"></ion-input>
+                </ion-item>
+                <br>
+                <ion-button expand="block" (click)="sendManual()">
+                    <ion-icon slot="icon-only" name="send"></ion-icon>
+                </ion-button>
+            </ion-list>
+        </ng-container>
+
+    </ng-container>
+
+</ion-content>

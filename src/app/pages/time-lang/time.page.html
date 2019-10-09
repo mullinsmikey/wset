@@ -1,0 +1,45 @@
+<ion-header no-border>
+    <ion-toolbar>
+
+        <ion-buttons slot="secondary">
+            <ion-button (click)="navigation.back()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+        <ion-title>Язык и время</ion-title>
+
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+
+    <ion-item>
+        <ion-label position="stacked">Язык</ion-label>
+        <ion-select [(ngModel)]="checkedLang">
+            <ion-select-option *ngFor="let itemLang of avLang" [value]="itemLang.id">
+                {{ itemLang.title }}
+            </ion-select-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item>
+        <ion-label position="stacked">Часовой пояс</ion-label>
+        <ion-select [(ngModel)]="checkedTime">
+            <ion-select-option *ngFor="let itemTime of avTime" [value]="itemTime.id">
+                {{ itemTime.title }}
+            </ion-select-option>
+        </ion-select>
+    </ion-item>
+
+    <br>
+    <ion-button expand="block" (click)="exec()">
+        <ion-icon slot="icon-only" name="send"></ion-icon>
+    </ion-button>
+
+    <br><hr><br>
+
+    <ion-button expand="block" (click)="calibrate()">Время из сети</ion-button>
+
+</ion-content>

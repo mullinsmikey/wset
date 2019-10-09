@@ -1,0 +1,82 @@
+// Text styles from Sketch
+//
+// format: font-size, line-height, font-weight, color variable
+// --------------------------------------------------
+$sketch-large-black:            28px, 33px, 700, --ion-color-black; // bold
+$sketch-h1-primary-md:          26px, 31px, 500, --ion-color-primary; // medium
+$sketch-h1-black-md:            26px, 31px, 500, --ion-color-black; // medium
+$sketch-h2-black-md:            24px, 28px, 500, --ion-color-black; // medium
+$sketch-h2-white-md:            24px, 28px, 500, --ion-color-white; // medium
+$sketch-h3-black-md:            22px, 26px, 500, --ion-color-black; // medium
+$sketch-h3-black-bold:          22px, 26px, 700, --ion-color-black; // bold
+$sketch-h4-black-md:            20px, 24px, 500, --ion-color-black; // medium
+$sketch-h4-black-bold:          20px, 24px, 700, --ion-color-black; // bold
+$sketch-h5-black-md:            18px, 21px, 500, --ion-color-black; // medium
+$sketch-h5-black-bold:          18px, 21px, 700, --ion-color-black; // bold
+
+$sketch-para-black:             16px, 18px, 400, --ion-color-black; // regular
+$sketch-para-black-md:          16px, 18px, 500, --ion-color-black; // medium
+$sketch-para-black-bold:        16px, 18px, 700, --ion-color-black; // bold
+$sketch-para-primary:           16px, 18px, 400, --ion-color-primary; // regular
+$sketch-para-primary-bold:      16px, 18px, 700, --ion-color-primary; // bold
+$sketch-para-gray:              16px, 18px, 400, --ion-color-medium; // regular
+$sketch-para-gray-md:           16px, 18px, 500, --ion-color-medium; // medium
+$sketch-para-danger:            16px, 18px, 400, --ion-color-danger; // regular
+
+$sketch-para-sm-black:          14px, 16px, 400, --ion-color-black; // regular
+$sketch-para-sm-black-md:       14px, 16px, 500, --ion-color-black; // medium
+$sketch-para-sm-black-bold:     14px, 16px, 700, --ion-color-black; // bold
+
+$sketch-small-black:            12px, 16px, 400, --ion-color-black; // regular
+$sketch-small-black-bold:       12px, 16px, 700, --ion-color-black; // bold
+$sketch-small-gray:             12px, 16px, 400, --ion-color-medium; // regular
+$sketch-small-gray-bold:        12px, 16px, 700, --ion-color-medium; // bold
+$sketch-small-primary:          12px, 16px, 400, --ion-color-primary; // regular
+
+
+$product-image-reduce: 20%;
+
+// Apply Sketch text style
+// @param {list} $text-style
+// @param {boolean} $need-line-height (defaults to FALSE)
+// ----------------------------------------------------------
+@mixin sketch-text($text-style, $need-line-height: false) {
+    font-size: nth($text-style, 1);
+    @if $need-line-height != false {
+        line-height: nth($text-style, 2);
+    }
+    font-weight: nth($text-style, 3);
+    color: var(nth($text-style, 4));
+}
+
+// Get only line-height from Sketch text style
+// @param {list} $text-style
+// WARNING Do NOT use within calc()
+// ----------------------------------------------------------
+@function sketch-line-height($text-style) {
+    @return nth($text-style, 2);
+}
+
+// Calculate grid decimal values
+// ----------------------------------------------------------
+@function grid-decimal($columns, $max-value) {
+    @return ($columns / 12) * $max-value;
+}
+
+// Create gradient background with fallback
+// ----------------------------------------------------------
+@mixin gradient-bg($angle, $color-1, $color-2) {
+    //background-color: $color-2;
+    background-image: linear-gradient($angle, $color-1, $color-2);
+    --background: linear-gradient($angle, $color-1, $color-2);
+}
+
+
+/* Roboto font */
+// inclusion: node_modules/@ionic/core/dist/collection/components/app/fonts/roboto.scss
+// reference: stackoverflow.com/questions/51755047/how-do-i-install-new-fonts-in-ionic-4/51915807
+:root, :root[mode=ios], :root[mode=md] {
+    --ion-font-family: "Roboto", "Helvetica Neue", sans-serif !important;
+    font-family: "Roboto", "Helvetica Neue", sans-serif !important;
+    @include sketch-text($sketch-para-black, true);
+}

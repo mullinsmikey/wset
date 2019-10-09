@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar><ion-title>Настройка приложения</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openHelp()"><ion-icon name="help-circle"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row *ngIf="perm_pone">
+      <ion-col col-12 padding>
+        <ion-label>У приложения недостаточно разрешений</ion-label>
+      </ion-col>
+      <ion-col col-12>
+        <button ion-button full color="danger" (click)="checkSms()">Проверить</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-10>
+        <ion-item>
+          <ion-label>{{tSimHead}}</ion-label>
+          <ion-input [(ngModel)]="simTest" type="tel"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2>
+        <!--<button ion-button clear (click)="getContact()" class="btn-btm"><ion-icon name="person"></ion-icon></button>-->
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="exMode">
+      <ion-col col-10>
+        <ion-item>
+          <ion-label>Номер второй SIM-карты</ion-label>
+          <ion-input [(ngModel)]="simClient" type="tel"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2></ion-col>
+    </ion-row>
+    <ion-row *ngIf="exMode">
+      <ion-col col-12>
+        <ion-label>SIM-карта в часах</ion-label>
+      </ion-col>
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>Первая</ion-label>
+          <ion-toggle [(ngModel)]="useTest"></ion-toggle>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <ion-label>Пароль для часов</ion-label>
+      </ion-col>
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>Стандартный</ion-label>
+          <ion-toggle [(ngModel)]="useStdPw"></ion-toggle>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

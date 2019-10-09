@@ -1,56 +1,92 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { Storage } from '@ionic/storage';
+import * as _const from '@modules/constants';
 
-import { WelcomePage } from '../pages/welcome/welcome';
-import { TabsPage } from '../pages/tabs/tabs';
+import { Platform } from '@ionic/angular';
+
+import { CacheService, EmService, NavigationService } from '@app/services';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+// import * as Sentry from 'sentry-cordova';
 
 @Component({
-  templateUrl: 'app.html'
+    selector: 'app-root',
+    templateUrl: 'app.component.html'
 })
-export class WSet {
+export class AppComponent {
 
-  rootPage: any;
+    constructor(
+        private platform: Platform,
+        public navigation: NavigationService,
+        private statusBar: StatusBar,
+        private splashScreen: SplashScreen,
+        private cacheSvc: CacheService,
+        public em: EmService
+        // private ngZone: NgZone
+    ) {
+        this.initializeApp();
+    }
 
-  constructor(
-    platform: Platform,
-    statusBar: StatusBar,
-    splashScreen: SplashScreen,
-    private storage: Storage
-  ) {
-    platform.ready().then(() => {
+    initializeApp() {
+        this.platform.ready()
+            .then(() => {
 
-      statusBar.styleDefault();
-      splashScreen.hide();
+                // Colorizing Statusbar
+                // ---------------------------------------------------
+                // this.statusBar.styleLightContent();
+                this.statusBar.styleDefault();
 
-      this.storage.get('welDone').then((val) => {
-        if (val == true) {
-          this.rootPage = TabsPage;
-        } else {
-          this.rootPage = WelcomePage;
-        }
-      }).catch(err => console.log(err));
+                if (cordova.platformId === 'android') {
+                    // this.statusBar.backgroundColorByHexString('#ff0786e9');
+                    this.statusBar.backgroundColorByHexString('#ffffffff');
+                }
 
-      this.storage.get('perm_ssms').then((vssms) => {
-        if (vssms == false) {
-          this.storage.get('perm_rpst').then((vrpst) => {
-            if (vrpst == false) {
-              this.storage.set('perm_pone', true);
-            }
-          }).catch(err => console.log(err));
-        } else {
-          this.storage.get('perm_rpst').then((vrpst) => {
-            if (vrpst == true) {
-              this.storage.set('perm_pone', false);
-            }
-          }).catch(err => console.log(err));
-        }
-      }).catch(err => console.log(err));
+                // Checking if analytics enabled & initializing Sentry
+                // ---------------------------------------------------
+                // noinspection JSIgnoredPromiseFromCall
+                // this.initAnalytics();
 
-      this.storage.set('simClient', '');
+                // Catching hardware back button action
+                // ---------------------------------------------------
+                /*
+                 * subscribeWithPriority(“@ionic/angular”: “4.0.0-rc.0”) fixes the strange behavior
+                 * when combining software & hardware back buttons.
+                 * Its current behaviour may vary with the consecutive versions.
+                 * >> https://medium.com/@aleksandarmitrev/ionic-hardware-back-button-nightmare-9f4af35cbfb0
+                 */
+                this.platform.backButton.subscribeWithPriority(1, () => {
+                    this.navigation.back();
+                });
 
-    });
-  }
+                // Clearing cached products
+                // ---------------------------------------------------
+                // noinspection JSIgnoredPromiseFromCall
+                this.manageCache();
+
+                // Finish loading
+                // ---------------------------------------------------
+                this.splashScreen.hide();
+            });
+    }
+
+    // private async initAnalytics() {
+    //     const isEnabled: boolean = await this.cacheSvc.fnIsAnalyticsEnabled();
+    //     if (isEnabled) {
+    //         // noinspection JSIgnoredPromiseFromCall
+    //         this.cacheSvc.fnCheckFireTokenChange();
+    //         Sentry.init({
+    //             dsn: SENTRY_DSN,
+    //             environment: environment.production ? 'production' : 'debug',
+    //             release: environment.production ? 'sjmarket-app@' + APP_VERSION : 'sjmarket-app@debug'
+    //         });
+    //     }
+    //     return;
+    // }
+
+    private async manageCache() {
+        // await this.cacheSvc.fnInvalidateCaches();
+        // await this.events.publish(EVENT_CART_UPDATE);
+        this.em.extendedMode = await this.cacheSvc.configGet(_const.EXTENDED_MODE, false);
+        return;
+    }
+
 }

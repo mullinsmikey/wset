@@ -1,0 +1,70 @@
+@import "../ref-styles";
+// ---------------------------------------------------
+
+$x-grid-spacing: 9px;
+
+.x-grid {
+    padding: 0 $x-grid-spacing;
+    margin-top: $x-grid-spacing; // TEMPORARILY
+
+    &-scroll {
+        box-sizing: content-box;
+        width: 100vw;
+        padding: 0;
+    }
+}
+
+.x-row {
+    display: flex;
+    flex-wrap: wrap;
+
+    &-scroll {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+
+        *[class*="x-col"]:first-child {
+            margin-left: ($x-grid-spacing * 2) - 5px;
+        }
+
+        *[class*="x-col"]:last-child {
+            margin-right: ($x-grid-spacing * 2) - 5px;
+        }
+    }
+}
+
+@mixin x-set-width($cols, $is-scroll: false) {
+    $set-val: if($is-scroll, calc(#{grid-decimal($cols, 100vw)} - #{$x-grid-spacing * 2}), grid-decimal($cols, 100%));
+
+    flex: 0 0 $set-val;
+    width: $set-val;
+    max-width: $set-val;
+}
+
+.x-col {
+    padding: 0 $x-grid-spacing 14px $x-grid-spacing;
+
+    &-1 {
+        @include x-set-width(1);
+    }
+
+    &-5 {
+        @include x-set-width(5);
+    }
+
+    //&-scroll-5 {
+    //    @include x-set-width(5, true);
+    //}
+
+    &-6 {
+        @include x-set-width(6);
+    }
+
+    //&-scroll-6 {
+    //    @include x-set-width(6, true);
+    //}
+
+    &-12 {
+        @include x-set-width(12);
+    }
+}

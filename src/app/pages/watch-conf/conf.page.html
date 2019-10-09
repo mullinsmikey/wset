@@ -1,0 +1,90 @@
+<ion-header no-border>
+    <ion-toolbar>
+
+        <ion-buttons slot="secondary">
+            <ion-button (click)="navigation.back()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+        <ion-title>Настройки часов</ion-title>
+
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+
+    <ion-list-header>Интервал отправки геопозиции</ion-list-header>
+    <ion-list>
+        <ion-item>
+            <ion-label position="stacked">В минутах</ion-label>
+            <ion-input [(ngModel)]="uploadMin" type="tel"></ion-input>
+            <!--suppress JSIgnoredPromiseFromCall -->
+            <ion-button slot="end" (click)="sendUpload()" fill="clear">
+                <ion-icon slot="icon-only" name="send"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ion-list>
+
+    <br>
+    <hr>
+    <br>
+
+    <ion-list-header>SOS-уведомления</ion-list-header>
+    <div class="x-row">
+        <div class="x-col-6">
+            <!--suppress JSIgnoredPromiseFromCall -->
+            <ion-button expand="block" (click)="exec('sossms', '1')">
+                Вкл<ion-icon slot="end" name="send"></ion-icon>
+            </ion-button>
+        </div>
+        <div class="x-col-6">
+            <!--suppress JSIgnoredPromiseFromCall -->
+            <ion-button expand="block" (click)="exec('sossms', '0')">
+                Выкл<ion-icon slot="end" name="send"></ion-icon>
+            </ion-button>
+        </div>
+    </div>
+
+    <br>
+    <hr>
+    <br>
+
+    <ion-list-header>Голосовые сообщения</ion-list-header>
+    <div class="x-row">
+        <div class="x-col-6">
+            <!--suppress JSIgnoredPromiseFromCall -->
+            <ion-button expand="block" (click)="exec('tkonoff', '1')">
+                Вкл<ion-icon slot="end" name="send"></ion-icon>
+            </ion-button>
+        </div>
+        <div class="x-col-6">
+            <!--suppress JSIgnoredPromiseFromCall -->
+            <ion-button expand="block" (click)="exec('tkonoff', '0')">
+                Выкл<ion-icon slot="end" name="send"></ion-icon>
+            </ion-button>
+        </div>
+    </div>
+
+    <br>
+    <hr>
+    <br>
+
+    <ion-list-header>Шагомер</ion-list-header>
+    <div class="x-row">
+        <div class="x-col-6">
+            <!--suppress JSIgnoredPromiseFromCall -->
+            <ion-button expand="block" (click)="exec('pedo', '1')">
+                Вкл<ion-icon slot="end" name="send"></ion-icon>
+            </ion-button>
+        </div>
+        <div class="x-col-6">
+            <!--suppress JSIgnoredPromiseFromCall -->
+            <ion-button expand="block" (click)="exec('pedo', '0')">
+                Выкл<ion-icon slot="end" name="send"></ion-icon>
+            </ion-button>
+        </div>
+    </div>
+
+</ion-content>

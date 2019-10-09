@@ -1,0 +1,15 @@
+export const AddedToCart = 'Добавлено в корзину';
+export const MaxAmountInCart = 'В корзине максимум';
+export const RemovedFromCart = 'Удалено из корзины';
+export const AddedToFavorites = 'Добавлено в избранные';
+export const RemovedFromFavorites = 'Удалено из избранного';
+export const ErrorLoading = 'Ошибка загрузки';
+export const defaultDadataAddress = 'Самарская область, ';
+export const EverythingInCategory = 'Все в категории ';
+export const OrderCanceled = 'Заказ отменен';
+export const CreatingOrder = 'Создаем заказ';
+export const OrderNumber = 'Заказ #';
+export const ChooseShipping = 'Выберите способ доставки';
+export const ChoosePayment = 'Выберите способ оплаты';
+export const OrderNotesViaApp = '\n[ через приложение ]';
+export const LookingForShipping = 'Подбираем способы доставки';

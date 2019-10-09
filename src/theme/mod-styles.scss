@@ -1,0 +1,153 @@
+@import "ref-styles";
+// ---------------------------------------------------
+
+// Smaller Toolbars
+// ---------------------------------------------------
+
+ion-toolbar {
+    --background: var(--ion-color-white);
+    --min-height: 48px;
+
+    ion-title {
+        @include sketch-text($sketch-h5-black-bold);
+        letter-spacing: normal;
+    }
+
+    ion-title.smaller {
+        @include sketch-text($sketch-para-black-bold);
+        letter-spacing: normal;
+    }
+}
+
+ion-header ion-toolbar {
+    ion-button, ion-icon {
+        --color: var(--ion-color-medium);
+    }
+}
+
+// Smaller Tab-bars
+// ---------------------------------------------------
+
+ion-tab-button {
+    --padding-top: 6px; // 12px;
+    --padding-bottom: 6px; // 12px;
+
+    ion-icon {
+        font-size: 23px;
+        --color: var(--ion-color-medium-shade);
+    }
+}
+
+// Normalized wrapping for ion-item > ion-label
+// ---------------------------------------------------
+
+ion-label.ion-text-wrap {
+    font-size: inherit !important;
+    line-height: inherit !important;
+}
+
+// Adjusting ion-item lists
+// ---------------------------------------------------
+
+ion-item {
+    --height: 50px;
+    --padding-top: 1px;
+    --padding-bottom: 1px;
+    --border-color: var(--ion-color-light);
+
+    //ion-label {
+    //    @include sketch-text($sketch-para-black, true);
+    //}
+    @include sketch-text($sketch-para-black, true);
+}
+
+ion-item.smaller {
+    @include sketch-text($sketch-para-sm-black, true);
+}
+
+.loading-wrapper {
+    --background: transparent;
+}
+
+.spinner-crescent {
+    --spinner-color: var(--ion-color-primary);
+}
+
+.color-link, .color-link * {
+    color: var(--ion-color-primary-shade);
+    --color: var(--ion-color-primary-shade);
+}
+
+
+div.no-items {
+    text-align: center;
+}
+
+div.category-title {
+    text-align: center;
+    @include sketch-text($sketch-para-black, true);
+
+    & > * {
+        display: block;
+    }
+
+    .big {
+        @include sketch-text($sketch-h5-black-md, true);
+    }
+
+    .color-link {
+        @include sketch-text($sketch-para-sm-black, true);
+        color: var(--ion-color-primary-shade);
+    }
+
+    ion-icon {
+        vertical-align: middle;
+        padding-bottom: 2px;
+    }
+}
+
+/* pre-designed micro styles */
+
+ion-text {
+    &.size-90 {
+        font-size: 90%;
+    }
+
+    &.size-80 {
+        font-size: 80%;
+    }
+}
+
+hr {
+    background-color: var(--ion-color-light-shade);
+    margin: 0;
+}
+
+.space-bottom-18 {
+    margin-bottom: 18px;
+}
+
+.space-bottom-9 {
+    margin-bottom: 9px;
+}
+
+.space-top-9 {
+    margin-top: 9px;
+}
+
+.refresher-refreshing-icon {
+    display: none;
+}
+
+// ---------------------------------------------------
+
+// ion-item > ion-label class="ion-text-wrap" > ion-text class="section-title"
+.section-title {
+    @include sketch-text($sketch-h5-black-md, true);
+}
+
+// ---------------------------------------------------
+// @import "components/discount-label";
+@import "components/product-card";
+// @import "components/product-page";
+@import "components/x-grid";

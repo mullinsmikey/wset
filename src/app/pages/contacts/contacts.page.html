@@ -1,0 +1,71 @@
+<ion-header no-border>
+    <ion-toolbar>
+
+        <ion-buttons slot="secondary">
+            <ion-button (click)="navigation.back()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+        <ion-title>Довер. номера</ion-title>
+
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+
+    <ion-list>
+        <ion-item>
+            <ion-label position="stacked">#1 имя</ion-label>
+            <ion-input [(ngModel)]="numbers[0].name" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">#1 номер</ion-label>
+            <ion-input [(ngModel)]="numbers[0].number" type="tel"></ion-input>
+        </ion-item>
+        <hr>
+        <ion-item>
+            <ion-label position="stacked">#2 имя</ion-label>
+            <ion-input [(ngModel)]="numbers[1].name" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">#2 номер</ion-label>
+            <ion-input [(ngModel)]="numbers[1].number" type="tel"></ion-input>
+        </ion-item>
+        <hr>
+        <ion-item>
+            <ion-label position="stacked">#3 имя</ion-label>
+            <ion-input [(ngModel)]="numbers[2].name" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">#3 номер</ion-label>
+            <ion-input [(ngModel)]="numbers[2].number" type="tel"></ion-input>
+        </ion-item>
+        <hr>
+        <ion-item>
+            <ion-label position="stacked">#4 имя</ion-label>
+            <ion-input [(ngModel)]="numbers[3].name" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">#4 номер</ion-label>
+            <ion-input [(ngModel)]="numbers[3].number" type="tel"></ion-input>
+        </ion-item>
+        <hr>
+        <ion-item>
+            <ion-label position="stacked">#5 имя</ion-label>
+            <ion-input [(ngModel)]="numbers[4].name" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">#5 номер</ion-label>
+            <ion-input [(ngModel)]="numbers[4].number" type="tel"></ion-input>
+        </ion-item>
+    </ion-list>
+
+    <br>
+    <!--suppress JSIgnoredPromiseFromCall -->
+    <ion-button expand="block" (click)="exec()">
+        <ion-icon slot="icon-only" name="send"></ion-icon>
+    </ion-button>
+
+</ion-content>
