@@ -1,6 +1,9 @@
-<h1>WSet</h1>
+# WSet
 
 Kids' watch setup app. Use this instead of sending SMS to your GPS watch manually.
+
+**This project has been deprecated and no longer maintained**
+![Maintenance](https://img.shields.io/maintenance/no/2019)
 
 ![version](https://img.shields.io/badge/dynamic/json.svg?label=version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fmullinsmikey%2Fwset%2Fmaster%2Fpackage.json&query=%24.version) ![Build Status](https://travis-ci.org/mullinsmikey/wset.svg?branch=master)
 
@@ -35,8 +38,3 @@ More information on [SemVer](http://semver.org).
 
 ## Copyright and License
 Every part of the project is licensed under MIT License just as the whole Ionic platform - see [this project's license file](./LICENSE) for details.
-
-## Questions and Contact Us
-If you do need to reach out to us, here's how to do it:
-
-* **Email** hi [at] muffin.blue
